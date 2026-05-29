@@ -1,0 +1,13 @@
+{
+  "name": "@nexaai/functions",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "serve": "supabase functions serve",
+    "deploy": "supabase functions deploy",
+    "lint": "deno lint",
+    "check": "deno check **/*.ts",
+    "typecheck": "deno check **/*.ts",
+    "test": "deno test"
+  }
+}
