@@ -1,0 +1,18 @@
+{
+  "expo": {
+    "name": "NexaAi",
+    "slug": "nexaai-mobile",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "scheme": "nexaai",
+    "userInterfaceStyle": "automatic",
+    "web": {
+      "output": "static"
+    },
+    "plugins": ["expo-router"],
+    "experiments": {
+      "typedRoutes": true,
+      "reactCompiler": true
+    }
+  }
+}
