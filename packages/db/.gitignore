@@ -1,0 +1,4 @@
+# Supabase CLI local state (project ref, linked-project.json, etc.)
+supabase/.temp/
+supabase/.branches/
+supabase/logs/
