@@ -160,9 +160,21 @@ importers:
         specifier: ^5.6.0
         version: 5.9.3
 
-  packages/config: {}
+  packages/config:
+    dependencies:
+      zod:
+        specifier: ^3.23.0
+        version: 3.25.76
+    devDependencies:
+      typescript:
+        specifier: ^5.6.0
+        version: 5.9.3
 
   packages/db:
+    dependencies:
+      '@supabase/supabase-js':
+        specifier: ^2.46.0
+        version: 2.106.2
     devDependencies:
       '@nexaai/config':
         specifier: workspace:*
@@ -171,7 +183,7 @@ importers:
         specifier: workspace:*
         version: link:../types
       supabase:
-        specifier: ^1.200.0
+        specifier: ^1.226.0
         version: 1.226.4
       tsx:
         specifier: ^4.19.0
@@ -203,6 +215,9 @@ importers:
       typescript:
         specifier: ^5.6.0
         version: 5.9.3
+      zod:
+        specifier: ^3.23.0
+        version: 3.25.76
 
   packages/ui:
     dependencies:
