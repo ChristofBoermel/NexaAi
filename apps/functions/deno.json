@@ -8,5 +8,16 @@
     "noUnusedParameters": true,
     "lib": ["deno.window", "deno.ns", "deno.unstable"]
   },
+  "lint": {
+    "include": [
+      "ai-generate-cv/",
+      "ai-job-writer/",
+      "dsgvo-delete/",
+      "dsgvo-export/",
+      "matching/",
+      "stripe-webhook/",
+      "_shared/"
+    ]
+  },
   "imports": {}
 }

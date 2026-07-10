@@ -1,0 +1,23 @@
+# Placeholder for admin (Vercel) deploy.
+# Enable manually once VERCEL_TOKEN, VERCEL_ORG_ID and VERCEL_PROJECT_ID
+# are set in repo secrets. Until then the job is guarded with an `if: false`.
+
+name: Deploy admin
+
+on:
+  push:
+    branches: [master]
+    paths:
+      - 'apps/admin/**'
+      - 'packages/**'
+      - '.github/workflows/deploy-admin.yml'
+  workflow_dispatch: {}
+
+jobs:
+  deploy:
+    if: false
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: TODO
+        run: echo "Fill in Vercel deploy steps once secrets exist"

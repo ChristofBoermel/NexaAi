@@ -5,7 +5,7 @@
   "scripts": {
     "serve": "supabase functions serve",
     "deploy": "supabase functions deploy",
-    "lint": "deno lint matching/",
+    "lint": "deno lint",
     "check": "deno check **/*.ts",
     "typecheck": "deno check **/*.ts",
     "test": "deno test"

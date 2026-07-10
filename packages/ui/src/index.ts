@@ -1,4 +1,6 @@
 // Shared UI-Tokens und Utilities (nicht Komponenten).
-// Komponenten leben pro App weil React Native und Next.js
-// unterschiedliche Primitive haben.
+// Komponenten leben pro Plattform:
+//   @nexaai/ui/mobile (React Native)
+//   @nexaai/ui/web    (React DOM / Next.js)
+
 export const UI_PLACEHOLDER = true

@@ -1,0 +1,23 @@
+# Placeholder for Supabase Edge Functions deploy.
+# Enable manually once SUPABASE_ACCESS_TOKEN and SUPABASE_PROJECT_REF
+# are set in repo secrets. Until then the job is guarded with an `if: false`.
+
+name: Deploy functions
+
+on:
+  push:
+    branches: [master]
+    paths:
+      - 'packages/db/supabase/functions/**'
+      - 'apps/functions/**'
+      - '.github/workflows/deploy-functions.yml'
+  workflow_dispatch: {}
+
+jobs:
+  deploy:
+    if: false
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: TODO
+        run: echo "Fill in supabase functions deploy steps once secrets exist"
