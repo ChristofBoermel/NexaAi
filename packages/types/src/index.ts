@@ -1,6 +1,7 @@
 // Shared TypeScript types across mobile, admin, and functions.
 // Zod-Schemas werden nach Domain gruppiert.
 
+export * from './auth'
 export * from './seeker'
 export * from './job'
 export * from './match'
