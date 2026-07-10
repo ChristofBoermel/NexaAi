@@ -6,7 +6,7 @@
     "noFallthroughCasesInSwitch": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "lib": ["deno.ns", "deno.unstable"]
+    "lib": ["deno.window", "deno.ns", "deno.unstable"]
   },
   "imports": {}
 }
