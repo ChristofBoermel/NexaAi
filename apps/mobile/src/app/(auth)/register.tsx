@@ -29,9 +29,14 @@ export default function Register() {
 
   const onSubmit = async (data: RegisterInput) => {
     setSubmitError(null)
-    const { error } = await signUpWithPassword(data.email, data.password)
+    const { data: authData, error } = await signUpWithPassword(data.email, data.password)
     if (error) {
       setSubmitError(error.message)
+      return
+    }
+    if (authData.session) {
+      // Supabase gab uns direkt eine Session (email-confirm ist im Projekt aus).
+      // Der SessionProvider hebt sie hoch und (auth)/_layout redirected zu /(app).
       return
     }
     setConfirmSent(true)
