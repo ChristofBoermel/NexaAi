@@ -3,12 +3,11 @@
 import { type ReactNode } from 'react'
 import { Text as RNText } from 'react-native'
 
-type TextVariants = Record<string, string>
-
-const variants: TextVariants = {
-  heading: 'text-2xl font-bold text-neutral-900',
-  body: 'text-base text-neutral-900',
-  muted: 'text-sm text-neutral-500',
+const variants = {
+  heading: 'text-3xl font-bold text-brand-800',
+  subheading: 'text-xl font-semibold text-brand-800',
+  body: 'text-base text-brand-900',
+  muted: 'text-sm text-brand-500',
 }
 
 export function Text({
@@ -16,7 +15,7 @@ export function Text({
   variant = 'body',
 }: {
   children: ReactNode
-  variant?: 'heading' | 'body' | 'muted'
+  variant?: keyof typeof variants
 }) {
   return <RNText className={variants[variant]}>{children}</RNText>
 }

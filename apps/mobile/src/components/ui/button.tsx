@@ -3,11 +3,14 @@
 import { type ReactNode } from 'react'
 import { Pressable, Text } from 'react-native'
 
-type VariantStyles = Record<string, string>
+const variantStyles = {
+  primary: 'rounded-lg bg-brand-800 active:bg-brand-900 px-6 py-4',
+  ghost: 'rounded-lg px-6 py-4',
+}
 
-const variantStyles: VariantStyles = {
-  primary: 'rounded-lg bg-neutral-900 px-6 py-3',
-  ghost: 'rounded-lg px-6 py-3',
+const textStyles = {
+  primary: 'text-center text-base font-semibold text-white',
+  ghost: 'text-center text-base font-semibold text-brand-800',
 }
 
 export function Button({
@@ -27,11 +30,7 @@ export function Button({
       disabled={disabled}
       className={`${variantStyles[variant]} ${disabled ? 'opacity-50' : ''}`}
     >
-      <Text
-        className={`text-base font-semibold ${variant === 'ghost' ? 'text-neutral-900' : 'text-white'}`}
-      >
-        {children}
-      </Text>
+      <Text className={textStyles[variant]}>{children}</Text>
     </Pressable>
   )
 }

@@ -22,16 +22,19 @@ export function Input({
   keyboardType?: 'default' | 'email-address'
 }) {
   return (
-    <View className="gap-1">
-      <Text className="text-sm font-medium text-neutral-700">{label}</Text>
+    <View className="gap-1.5">
+      <Text className="text-sm font-medium text-brand-800">{label}</Text>
       <TextInput
         value={value}
         onChangeText={onChangeText}
         placeholder={placeholder}
+        placeholderTextColor="#829FB8"
         secureTextEntry={secureTextEntry}
         autoCapitalize={autoCapitalize}
         keyboardType={keyboardType}
-        className="rounded-lg border border-neutral-300 px-4 py-3 text-base text-neutral-900"
+        className={`rounded-lg border px-4 py-4 text-base text-brand-900 ${
+          error ? 'border-red-500' : 'border-brand-200'
+        }`}
       />
       {error && <Text className="text-sm text-red-600">{error}</Text>}
     </View>
