@@ -17,6 +17,13 @@
     "experiments": {
       "typedRoutes": false,
       "reactCompiler": true
-    }
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "bf0ecedc-cadb-4043-8071-9a1e793055ae"
+      }
+    },
+    "owner": "senselesschris"
   }
 }
