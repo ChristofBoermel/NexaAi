@@ -71,21 +71,23 @@ export default function ConfirmCallback() {
     )
   }
 
+  // Auto-login failed (usually because the PKCE verifier is gone). The user's
+  // email is still confirmed server-side though, so nudge them toward login.
   return (
     <SafeAreaView className="flex-1 bg-white">
       <View className="flex-1 items-center justify-center px-6">
         <LogoMark size="md" />
         <View className="mt-6">
-          <UIText variant="heading">Link ungueltig</UIText>
+          <UIText variant="heading">Fast fertig</UIText>
         </View>
-        <View className="mt-2">
+        <View className="mt-2 items-center">
           <UIText variant="muted">
-            Der Bestaetigungslink ist abgelaufen oder wurde schon benutzt.
+            Deine E-Mail ist bestaetigt. Bitte melde dich an.
           </UIText>
         </View>
         <View className="mt-8 w-full">
           <Button onPress={() => router.replace('/(auth)/login')}>
-            Zurueck zum Login
+            Zum Login
           </Button>
         </View>
       </View>
