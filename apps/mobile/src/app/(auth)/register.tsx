@@ -15,6 +15,7 @@ import { Text as UIText } from '@/components/ui/text'
 export default function Register() {
   const router = useRouter()
   const [confirmSent, setConfirmSent] = useState(false)
+  const [submitError, setSubmitError] = useState<string | null>(null)
   const {
     control,
     handleSubmit,
@@ -25,8 +26,13 @@ export default function Register() {
   })
 
   const onSubmit = async (data: RegisterInput) => {
+    setSubmitError(null)
     const { error } = await signUpWithPassword(data.email, data.password)
-    if (!error) setConfirmSent(true)
+    if (error) {
+      setSubmitError(error.message)
+      return
+    }
+    setConfirmSent(true)
   }
 
   if (confirmSent) {
@@ -96,6 +102,10 @@ export default function Register() {
           )}
         />
       </View>
+
+      {submitError && (
+        <Text className="mt-4 text-center text-sm text-red-600">{submitError}</Text>
+      )}
 
       <Button onPress={handleSubmit(onSubmit)} disabled={isSubmitting}>
         Registrieren
