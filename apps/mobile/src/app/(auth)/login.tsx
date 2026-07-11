@@ -90,7 +90,7 @@ export default function Login() {
 
           <View className="mt-3 items-end">
             <Link
-              href="/(auth)/login"
+              href="/(auth)/password-reset"
               className="text-sm text-brand-500"
             >
               Passwort vergessen?

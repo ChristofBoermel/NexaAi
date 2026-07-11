@@ -65,3 +65,19 @@ export async function signOut() {
   const { error } = await supabase.auth.signOut()
   return { error }
 }
+
+// Loesst eine Passwort-Reset-Email aus.
+// redirectTo verweist auf unseren Deep-Link Handler in Chunk C.
+export async function requestPasswordReset(email: string) {
+  const { error } = await supabase.auth.resetPasswordForEmail(email, {
+    redirectTo: 'nexaai://reset-callback',
+  })
+  return { error }
+}
+
+// Setzt das Passwort fuer die aktuell eingeloggte Session neu.
+// Der Reset-Callback muss vorher via Deep-Link eine Recovery-Session etabliert haben.
+export async function updatePassword(newPassword: string) {
+  const { error } = await supabase.auth.updateUser({ password: newPassword })
+  return { error }
+}

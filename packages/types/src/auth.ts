@@ -30,5 +30,21 @@ export const registerSchema = z
     path: ['passwordConfirm'],
   })
 
+export const resetRequestSchema = z.object({
+  email: emailSchema,
+})
+
+export const resetConfirmSchema = z
+  .object({
+    password: passwordSchema,
+    passwordConfirm: z.string(),
+  })
+  .refine((data) => data.password === data.passwordConfirm, {
+    message: 'Die Passwoerter stimmen nicht ueberein',
+    path: ['passwordConfirm'],
+  })
+
 export type LoginInput = z.infer<typeof loginSchema>
 export type RegisterInput = z.infer<typeof registerSchema>
+export type ResetRequestInput = z.infer<typeof resetRequestSchema>
+export type ResetConfirmInput = z.infer<typeof resetConfirmSchema>
