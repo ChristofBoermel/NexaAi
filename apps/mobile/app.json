@@ -6,8 +6,13 @@
     "orientation": "portrait",
     "scheme": "nexaai",
     "userInterfaceStyle": "automatic",
+    "icon": "./assets/icon.png",
     "android": {
-      "package": "com.nexaai.mobile"
+      "package": "com.nexaai.mobile",
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#FFFFFF"
+      }
     },
     "ios": {
       "bundleIdentifier": "com.nexaai.mobile"
@@ -18,7 +23,15 @@
     "plugins": [
       "expo-router",
       "expo-secure-store",
-      "expo-sqlite"
+      "expo-sqlite",
+      [
+        "expo-splash-screen",
+        {
+          "image": "./assets/logo.png",
+          "imageWidth": 240,
+          "backgroundColor": "#FFFFFF"
+        }
+      ]
     ],
     "experiments": {
       "typedRoutes": false,
