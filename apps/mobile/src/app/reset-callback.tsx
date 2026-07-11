@@ -1,25 +1,28 @@
-// Deep-link callback screen: user landed here after clicking the reset link
-// in their email. At this point Supabase (via the URL handler set up in
-// Chunk C) has established a recovery session for us. We collect the new
-// password and call updateUser.
+// Deep-link callback screen for password reset. User clicked the reset link
+// in their email; Supabase redirected here with ?code=<pkce>. We exchange
+// the code for a recovery session, then show the new-password form.
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { ScrollView, Text, View } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { Controller, useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useRouter } from 'expo-router'
+import { useLocalSearchParams, useRouter } from 'expo-router'
 
 import { resetConfirmSchema, type ResetConfirmInput } from '@nexaai/types'
 
-import { updatePassword } from '@/lib/auth'
+import { exchangeCodeForSession, updatePassword } from '@/lib/auth'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { LogoMark } from '@/components/ui/logo-mark'
 import { Text as UIText } from '@/components/ui/text'
 
+type Phase = 'exchanging' | 'form' | 'invalid'
+
 export default function ResetCallback() {
   const router = useRouter()
+  const { code } = useLocalSearchParams<{ code?: string }>()
+  const [phase, setPhase] = useState<Phase>('exchanging')
   const [submitError, setSubmitError] = useState<string | null>(null)
   const {
     control,
@@ -30,6 +33,16 @@ export default function ResetCallback() {
     defaultValues: { password: '', passwordConfirm: '' },
   })
 
+  useEffect(() => {
+    if (!code) {
+      setPhase('invalid')
+      return
+    }
+    exchangeCodeForSession(code).then(({ error }) => {
+      setPhase(error ? 'invalid' : 'form')
+    })
+  }, [code])
+
   const onSubmit = async (data: ResetConfirmInput) => {
     setSubmitError(null)
     const { error } = await updatePassword(data.password)
@@ -38,6 +51,52 @@ export default function ResetCallback() {
       return
     }
     router.replace('/(app)')
+  }
+
+  if (phase === 'exchanging') {
+    return (
+      <SafeAreaView className="flex-1 bg-white">
+        <View className="flex-1 items-center justify-center">
+          <LogoMark size="md" />
+          <View className="mt-6">
+            <UIText variant="muted">Reset-Link wird geprueft...</UIText>
+          </View>
+        </View>
+      </SafeAreaView>
+    )
+  }
+
+  if (phase === 'invalid') {
+    return (
+      <SafeAreaView className="flex-1 bg-white">
+        <ScrollView
+          contentContainerStyle={{
+            flexGrow: 1,
+            paddingHorizontal: 24,
+            paddingVertical: 32,
+          }}
+        >
+          <View className="flex-1">
+            <View className="items-center">
+              <LogoMark size="md" />
+            </View>
+            <View className="mt-10">
+              <UIText variant="heading">Link ungueltig</UIText>
+            </View>
+            <View className="mt-2">
+              <UIText variant="muted">
+                Der Reset-Link ist abgelaufen oder wurde schon benutzt. Fordere einen neuen an.
+              </UIText>
+            </View>
+            <View className="mt-auto">
+              <Button onPress={() => router.replace('/(auth)/password-reset')}>
+                Neuen Link anfordern
+              </Button>
+            </View>
+          </View>
+        </ScrollView>
+      </SafeAreaView>
+    )
   }
 
   return (

@@ -57,7 +57,11 @@ export async function signInWithPassword(email: string, password: string) {
 }
 
 export async function signUpWithPassword(email: string, password: string) {
-  const { data, error } = await supabase.auth.signUp({ email, password })
+  const { data, error } = await supabase.auth.signUp({
+    email,
+    password,
+    options: { emailRedirectTo: 'nexaai://confirm-callback' },
+  })
   return { data, error }
 }
 
@@ -80,4 +84,21 @@ export async function requestPasswordReset(email: string) {
 export async function updatePassword(newPassword: string) {
   const { error } = await supabase.auth.updateUser({ password: newPassword })
   return { error }
+}
+
+// Deep-Link Handler fuer PKCE-Flow: tauscht den einmaligen Code aus dem
+// Recovery- oder Signup-Link gegen eine Session ein.
+export async function exchangeCodeForSession(code: string) {
+  const { data, error } = await supabase.auth.exchangeCodeForSession(code)
+  return { data, error }
+}
+
+// Deep-Link Handler fuer Legacy Signup-Confirmation, wenn der Link einen
+// token_hash statt eines Codes enthaelt.
+export async function verifySignupToken(tokenHash: string) {
+  const { data, error } = await supabase.auth.verifyOtp({
+    type: 'signup',
+    token_hash: tokenHash,
+  })
+  return { data, error }
 }

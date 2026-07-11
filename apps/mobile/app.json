@@ -6,6 +6,12 @@
     "orientation": "portrait",
     "scheme": "nexaai",
     "userInterfaceStyle": "automatic",
+    "android": {
+      "package": "com.nexaai.mobile"
+    },
+    "ios": {
+      "bundleIdentifier": "com.nexaai.mobile"
+    },
     "web": {
       "output": "static"
     },
