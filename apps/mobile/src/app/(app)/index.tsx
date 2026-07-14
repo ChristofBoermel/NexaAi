@@ -1,53 +1,70 @@
-// Landing nach Login. Aktuell Placeholder.
-// Onboarding (CV-Wizard, Skills-Auswahl) kommt in einem naechsten Step.
+// Home. Nach erfolgreichem Onboarding zeigt sie den freigegebenen CV.
+// Solange cv_approved_at null ist, gehen wir direkt in den Wizard.
 
+import { Redirect } from 'expo-router'
+import { useRouter } from 'expo-router'
 import { ScrollView, View } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 
-import { signOut, useSession } from '@/lib/auth'
+import { signOut } from '@/lib/auth'
+import {
+  useEducations,
+  useSeekerProfile,
+  useSeekerSkills,
+  useWorkExperiences,
+} from '@/lib/seeker'
 import { Button } from '@/components/ui/button'
 import { LogoMark } from '@/components/ui/logo-mark'
 import { Text } from '@/components/ui/text'
+import { CvView } from '@/components/cv/cv-view'
 
 export default function Home() {
-  const { session } = useSession()
-  const email = session?.user.email ?? ''
+  const router = useRouter()
+  const { profile, seeker, isLoading: p1 } = useSeekerProfile()
+  const { items: workExperiences, isLoading: p2 } = useWorkExperiences()
+  const { items: educations, isLoading: p3 } = useEducations()
+  const { items: skills, isLoading: p4 } = useSeekerSkills()
+
+  const loading = p1 || p2 || p3 || p4
+
+  if (loading) {
+    return <View className="flex-1 bg-white" />
+  }
+
+  if (!seeker || seeker.cv_approved_at == null) {
+    return <Redirect href="/(app)/onboarding/beruf" />
+  }
 
   return (
     <SafeAreaView className="flex-1 bg-white">
       <ScrollView
         contentContainerStyle={{
-          flexGrow: 1,
           paddingHorizontal: 24,
-          paddingVertical: 32,
+          paddingVertical: 24,
+          paddingBottom: 48,
         }}
       >
-        <View className="flex-1">
-          <View className="items-center">
-            <LogoMark size="md" />
-          </View>
+        <View className="items-center">
+          <LogoMark size="md" />
+        </View>
 
-          <View className="mt-10">
-            <Text variant="heading">Willkommen</Text>
-          </View>
-          <View className="mt-2">
-            <Text variant="muted">{email}</Text>
-          </View>
+        <View className="mt-8">
+          <CvView
+            profile={profile}
+            seeker={seeker}
+            workExperiences={workExperiences}
+            educations={educations}
+            skills={skills}
+          />
+        </View>
 
-          <View className="mt-10">
-            <Text variant="subheading">Dein Profil ist fast fertig</Text>
-            <View className="mt-3">
-              <Text variant="body">
-                Wir sammeln in den naechsten Schritten deine Daten und erstellen daraus einen Lebenslauf. Der Onboarding-Assistent kommt in Kuerze.
-              </Text>
-            </View>
-          </View>
-
-          <View className="mt-auto pt-6">
-            <Button variant="ghost" onPress={() => signOut()}>
-              Abmelden
-            </Button>
-          </View>
+        <View className="mt-10 gap-3">
+          <Button onPress={() => router.push('/(app)/onboarding/beruf')}>
+            Bearbeiten
+          </Button>
+          <Button variant="ghost" onPress={() => signOut()}>
+            Abmelden
+          </Button>
         </View>
       </ScrollView>
     </SafeAreaView>

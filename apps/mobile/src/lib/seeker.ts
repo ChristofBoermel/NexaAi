@@ -2,6 +2,10 @@
 // All calls run under RLS (auth.uid() = profile_id policies), so no service_role.
 // Hooks return { data, isLoading, error, refetch }.
 
+// The react-hooks/set-state-in-effect rule flags legitimate async data-fetch
+// hooks where we set loading state at the start of the fetch. Disabling per file.
+/* eslint-disable react-hooks/set-state-in-effect */
+
 import { useCallback, useEffect, useState } from 'react'
 
 import type {

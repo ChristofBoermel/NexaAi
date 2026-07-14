@@ -35,6 +35,7 @@ export default function ResetCallback() {
 
   useEffect(() => {
     if (!code) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setPhase('invalid')
       return
     }

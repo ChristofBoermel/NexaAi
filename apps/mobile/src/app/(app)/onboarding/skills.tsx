@@ -30,6 +30,7 @@ export default function Skills() {
   const [saving, setSaving] = useState(false)
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setSelected(initialSelected)
   }, [initialSelected])
 
