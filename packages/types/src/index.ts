@@ -3,6 +3,7 @@
 
 export * from './auth'
 export * from './seeker'
+export * from './seeker-profile'
 export * from './job'
 export * from './match'
 
