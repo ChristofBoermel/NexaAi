@@ -31,7 +31,9 @@
           "imageWidth": 240,
           "backgroundColor": "#FFFFFF"
         }
-      ]
+      ],
+      "@react-native-community/datetimepicker",
+      "expo-image"
     ],
     "experiments": {
       "typedRoutes": false,

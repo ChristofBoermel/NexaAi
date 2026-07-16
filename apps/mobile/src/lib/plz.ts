@@ -14,7 +14,7 @@ export async function lookupCity(postalCode: string): Promise<string | null> {
   try {
     const res = await fetch(`${API_BASE}?postalCode=${postalCode}`)
     if (!res.ok) return null
-    const data = (await res.json()) as Array<{ name?: string }>
+    const data = (await res.json()) as { name?: string }[]
     const city = data[0]?.name
     if (typeof city === 'string' && city.length > 0) {
       cache.set(postalCode, city)

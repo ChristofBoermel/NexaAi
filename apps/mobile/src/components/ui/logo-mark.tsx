@@ -1,7 +1,7 @@
 // Wordmark logo (handshake + "nexa consulting"). Aspect ratio ~3.28:1.
-// Static import means Metro bundles the asset and the same URI works on all platforms.
+// Uses expo-image for better caching and format support than the RN default.
 
-import { Image } from 'react-native'
+import { Image } from 'expo-image'
 
 const ASPECT = 305 / 93
 
@@ -19,7 +19,7 @@ export function LogoMark({ size = 'md' }: { size?: 'sm' | 'md' | 'lg' }) {
     <Image
       source={require('../../../assets/logo.png')}
       style={{ width, height }}
-      resizeMode="contain"
+      contentFit="contain"
       accessibilityLabel="NexaAi"
     />
   )

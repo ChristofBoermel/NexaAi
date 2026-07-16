@@ -16,6 +16,7 @@ import {
 } from '@/lib/seeker'
 import { Button } from '@/components/ui/button'
 import { LogoMark } from '@/components/ui/logo-mark'
+import { CvSkeleton } from '@/components/ui/skeleton'
 import { CvView } from '@/components/cv/cv-view'
 
 export default function Home() {
@@ -28,7 +29,18 @@ export default function Home() {
   const loading = p1 || p2 || p3 || p4
 
   if (loading) {
-    return <View className="flex-1 bg-white" />
+    return (
+      <SafeAreaView className="flex-1 bg-white">
+        <View className="flex-1 px-6 py-6">
+          <View className="items-center">
+            <LogoMark size="md" />
+          </View>
+          <View className="mt-8">
+            <CvSkeleton />
+          </View>
+        </View>
+      </SafeAreaView>
+    )
   }
 
   if (!seeker || seeker.cv_approved_at == null) {
