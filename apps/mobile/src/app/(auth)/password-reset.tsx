@@ -64,7 +64,7 @@ export default function PasswordReset() {
             </View>
             <View className="mt-auto">
               <Button onPress={() => router.replace('/(auth)/login')}>
-                Zurueck zum Login
+                Zurück zum Login
               </Button>
             </View>
           </View>
@@ -92,7 +92,7 @@ export default function PasswordReset() {
           </View>
           <View className="mt-2">
             <UIText variant="muted">
-              Gib deine E-Mail ein, wir schicken dir einen Link zum Zuruecksetzen.
+              Gib deine E-Mail ein, wir schicken dir einen Link zum Zurücksetzen.
             </UIText>
           </View>
 
@@ -119,14 +119,14 @@ export default function PasswordReset() {
           )}
 
           <View className="mt-8">
-            <Button onPress={handleSubmit(onSubmit)} disabled={isSubmitting}>
+            <Button onPress={handleSubmit(onSubmit)} loading={isSubmitting}>
               Link senden
             </Button>
           </View>
 
           <View className="mt-auto">
             <View className="flex-row justify-center">
-              <Text className="text-brand-900">Zurueck zum </Text>
+              <Text className="text-brand-900">Zurück zum </Text>
               <Link href="/(auth)/login" className="font-bold text-brand-800">
                 Login
               </Link>

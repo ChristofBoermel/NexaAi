@@ -1,13 +1,18 @@
-// Wizard layout. Header contains the small logo, a step counter, and the
-// progress bar. Each child screen renders inside a Slot. Back-Navigation
-// funktioniert via expo-router history (Handy-Back-Button oder router.back()).
+// Wizard layout. Header contains the small logo, current step label, and a
+// segmented progress bar that lights up per step as data lands in the DB.
 
 import { Slot, useSegments } from 'expo-router'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { View } from 'react-native'
 
+import {
+  useEducations,
+  useSeekerProfile,
+  useSeekerSkills,
+  useWorkExperiences,
+} from '@/lib/seeker'
 import { LogoMark } from '@/components/ui/logo-mark'
-import { ProgressBar } from '@/components/ui/progress-bar'
+import { SegmentedProgressBar, type Segment } from '@/components/ui/progress-bar'
 import { Text } from '@/components/ui/text'
 
 const STEPS = ['beruf', 'basics', 'erfahrung', 'ausbildung', 'skills', 'preview'] as const
@@ -27,18 +32,42 @@ export default function OnboardingLayout() {
   const segments = useSegments()
   const currentSegment = segments[segments.length - 1] as StepName | undefined
   const stepIndex = currentSegment ? STEPS.indexOf(currentSegment) : -1
-  const step = stepIndex >= 0 ? stepIndex + 1 : 1
   const label = currentSegment && STEP_LABEL[currentSegment] ? STEP_LABEL[currentSegment] : ''
+
+  const { profile, seeker } = useSeekerProfile()
+  const { items: workExperiences } = useWorkExperiences()
+  const { items: educations } = useEducations()
+  const { items: skills } = useSeekerSkills()
+
+  const complete: Record<StepName, boolean> = {
+    beruf: Boolean(seeker?.job_title),
+    basics: Boolean(
+      profile?.first_name &&
+        profile?.last_name &&
+        seeker?.postal_code &&
+        seeker?.city &&
+        seeker?.available_from,
+    ),
+    erfahrung: workExperiences.length > 0,
+    ausbildung: educations.length > 0,
+    skills: skills.length > 0,
+    preview: Boolean(seeker?.cv_approved_at),
+  }
+
+  const progress: Segment[] = STEPS.map((name, i) => ({
+    active: i === stepIndex,
+    complete: complete[name],
+  }))
 
   return (
     <SafeAreaView className="flex-1 bg-white" edges={['top']}>
       <View className="border-b border-brand-100 px-6 py-3">
         <View className="flex-row items-center justify-between">
           <LogoMark size="sm" />
-          <Text variant="muted">{label !== '' ? label : `Schritt ${step} von ${STEPS.length}`}</Text>
+          <Text variant="muted">{label !== '' ? label : `Schritt ${stepIndex + 1} von ${STEPS.length}`}</Text>
         </View>
         <View className="mt-2">
-          <ProgressBar step={step} total={STEPS.length} />
+          <SegmentedProgressBar steps={progress} />
         </View>
       </View>
       <Slot />

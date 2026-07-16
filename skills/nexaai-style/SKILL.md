@@ -23,23 +23,31 @@ Weder in Code-Kommentaren, Commit-Messages, Docs, noch in User-facing Text. Nutz
 // Match wird erstellt: wenn beide swipen
 ```
 
-### User-facing Text auf Deutsch
+### User-facing Text auf Deutsch mit echten Umlauten
 
 **Impact:** HIGH
 
 Alle Fehlermeldungen, Buttons, Labels sind auf Deutsch. Code-Kommentare bleiben englisch.
+**Umlaute werden immer als ü/ä/ö/ß geschrieben, niemals als ue/ae/oe/ss Transliteration.**
+Die Dateien sind UTF-8, der Compiler und Metro handhaben das problemlos.
 
 **Falsch:**
 ```typescript
 throw new Error('Profile not found')
+throw new UserFacingError('Fuer dieses Profil bitte anmelden')  // Transliteration
 ```
 
 **Richtig:**
 ```typescript
 throw new UserFacingError('Profil nicht gefunden')
+throw new UserFacingError('Für dieses Profil bitte anmelden')
 // Code-Kommentar bleibt englisch:
 // Throws if seeker profile does not exist
 ```
+
+Ausnahme: URL-Slugs und Datenbank-Slugs bleiben ASCII (kebab-case ohne Umlaute),
+damit sie in URLs und Tools robust sind. Der `display_name` fuer den Nutzer bekommt
+die Umlaute.
 
 ### Conventional Commits
 

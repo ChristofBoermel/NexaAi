@@ -61,7 +61,7 @@ export default function ResetCallback() {
         <View className="flex-1 items-center justify-center">
           <LogoMark size="md" />
           <View className="mt-6">
-            <UIText variant="muted">Reset-Link wird geprueft...</UIText>
+            <UIText variant="muted">Reset-Link wird geprüft...</UIText>
           </View>
         </View>
       </SafeAreaView>
@@ -83,7 +83,7 @@ export default function ResetCallback() {
               <LogoMark size="md" />
             </View>
             <View className="mt-10">
-              <UIText variant="heading">Link ungueltig</UIText>
+              <UIText variant="heading">Link ungültig</UIText>
             </View>
             <View className="mt-2">
               <UIText variant="muted">
@@ -119,7 +119,7 @@ export default function ResetCallback() {
             <UIText variant="heading">Neues Passwort</UIText>
           </View>
           <View className="mt-2">
-            <UIText variant="muted">Waehle ein neues Passwort fuer dein Konto.</UIText>
+            <UIText variant="muted">Wähle ein neues Passwort für dein Konto.</UIText>
           </View>
 
           <View className="mt-10 gap-4">
@@ -142,7 +142,7 @@ export default function ResetCallback() {
               name="passwordConfirm"
               render={({ field: { onChange, value } }) => (
                 <Input
-                  label="Passwort bestaetigen"
+                  label="Passwort bestätigen"
                   value={value}
                   onChangeText={onChange}
                   error={errors.passwordConfirm?.message}
@@ -158,7 +158,7 @@ export default function ResetCallback() {
           )}
 
           <View className="mt-8">
-            <Button onPress={handleSubmit(onSubmit)} disabled={isSubmitting}>
+            <Button onPress={handleSubmit(onSubmit)} loading={isSubmitting}>
               Passwort speichern
             </Button>
           </View>

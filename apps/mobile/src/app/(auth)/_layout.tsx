@@ -1,4 +1,4 @@
-// Stack fuer die Auth-Routes (login, register).
+// Stack für die Auth-Routes (login, register).
 // Wenn bereits eine Session existiert, gehen wir direkt zu /(app).
 // Damit sieht ein eingeloggter User nie den Login-Screen.
 

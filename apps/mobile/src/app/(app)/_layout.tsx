@@ -1,5 +1,5 @@
-// Stack fuer die Post-Login-Routes.
-// Wenn die Session fehlt, redirecten wir zurueck zum Login.
+// Stack für die Post-Login-Routes.
+// Wenn die Session fehlt, redirecten wir zurück zum Login.
 
 import { Redirect, Stack } from 'expo-router'
 import { View } from 'react-native'

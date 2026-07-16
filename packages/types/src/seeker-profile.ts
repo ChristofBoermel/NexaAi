@@ -6,15 +6,15 @@ import { z } from 'zod'
 const currentYear = new Date().getFullYear()
 
 const monthSchema = z
-  .number({ invalid_type_error: 'Bitte Monat waehlen' })
+  .number({ invalid_type_error: 'Bitte Monat wählen' })
   .int()
-  .min(1, 'Ungueltiger Monat')
-  .max(12, 'Ungueltiger Monat')
+  .min(1, 'Ungültiger Monat')
+  .max(12, 'Ungültiger Monat')
 
 const yearSchema = z
-  .number({ invalid_type_error: 'Bitte Jahr waehlen' })
+  .number({ invalid_type_error: 'Bitte Jahr wählen' })
   .int()
-  .min(1950, 'Jahr liegt zu weit zurueck')
+  .min(1950, 'Jahr liegt zu weit zurück')
   .max(currentYear + 5, 'Jahr liegt zu weit in der Zukunft')
 
 const postalCodeSchema = z
@@ -31,19 +31,19 @@ export const basicsSchema = z.object({
   birthYear: z
     .number()
     .int()
-    .min(1900, 'Ungueltiges Geburtsjahr')
-    .max(currentYear, 'Ungueltiges Geburtsjahr')
+    .min(1900, 'Ungültiges Geburtsjahr')
+    .max(currentYear, 'Ungültiges Geburtsjahr')
     .optional(),
   postalCode: postalCodeSchema,
   city: z.string().min(1, 'Bitte gib deine Stadt ein').max(80),
   hasDriverLicense: z.boolean(),
   hasCar: z.boolean(),
-  availableFrom: z.string().regex(/^\d{4}-\d{2}-\d{2}$/, 'Ungueltiges Datum'),
+  availableFrom: z.string().regex(/^\d{4}-\d{2}-\d{2}$/, 'Ungültiges Datum'),
   salaryExpectation: z
     .number()
     .int()
     .min(0)
-    .max(1_000_000, 'Ungueltige Gehaltsangabe')
+    .max(1_000_000, 'Ungültige Gehaltsangabe')
     .optional(),
 })
 
@@ -91,8 +91,8 @@ export const educationSchema = z
 
 export const skillSelectionSchema = z
   .array(z.string().uuid())
-  .min(1, 'Bitte waehle mindestens einen Skill')
-  .max(6, 'Maximal 6 Skills moeglich')
+  .min(1, 'Bitte wähle mindestens einen Skill')
+  .max(6, 'Maximal 6 Skills möglich')
 
 export type BasicsInput = z.infer<typeof basicsSchema>
 export type WorkExperienceInput = z.infer<typeof workExperienceSchema>

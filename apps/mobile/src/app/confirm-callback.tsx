@@ -48,7 +48,7 @@ export default function ConfirmCallback() {
         <View className="flex-1 items-center justify-center">
           <LogoMark size="md" />
           <View className="mt-6">
-            <UIText variant="muted">E-Mail wird bestaetigt...</UIText>
+            <UIText variant="muted">E-Mail wird bestätigt...</UIText>
           </View>
         </View>
       </SafeAreaView>
@@ -82,7 +82,7 @@ export default function ConfirmCallback() {
         </View>
         <View className="mt-2 items-center">
           <UIText variant="muted">
-            Deine E-Mail ist bestaetigt. Bitte melde dich an.
+            Deine E-Mail ist bestätigt. Bitte melde dich an.
           </UIText>
         </View>
         <View className="mt-8 w-full">

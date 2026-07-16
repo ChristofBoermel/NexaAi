@@ -1,6 +1,6 @@
-// Supabase Client fuer die Mobile-App.
+// Supabase Client für die Mobile-App.
 //
-// Session-Tokens werden ueber expo-sqlite/kv-store persistiert. SecureStore ist
+// Session-Tokens werden über expo-sqlite/kv-store persistiert. SecureStore ist
 // auf iOS auf 2 KB pro Key limitiert, Supabase-Tokens koennen groesser werden.
 // SQLite hat kein Limit und ist auf beiden Plattformen stabil.
 //

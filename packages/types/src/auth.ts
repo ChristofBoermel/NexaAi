@@ -26,7 +26,7 @@ export const registerSchema = z
     passwordConfirm: z.string(),
   })
   .refine((data) => data.password === data.passwordConfirm, {
-    message: 'Die Passwoerter stimmen nicht ueberein',
+    message: 'Die Passwörter stimmen nicht überein',
     path: ['passwordConfirm'],
   })
 
@@ -40,7 +40,7 @@ export const resetConfirmSchema = z
     passwordConfirm: z.string(),
   })
   .refine((data) => data.password === data.passwordConfirm, {
-    message: 'Die Passwoerter stimmen nicht ueberein',
+    message: 'Die Passwörter stimmen nicht überein',
     path: ['passwordConfirm'],
   })
 

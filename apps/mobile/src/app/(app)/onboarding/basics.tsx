@@ -1,16 +1,17 @@
-// Onboarding Step 2: Basis-Daten fuer den CV-Header.
-// Vorname, Nachname, Geburtsjahr (opt), PLZ + Stadt, Fuehrerschein, PKW,
-// Verfuegbar-Datum, Gehaltsvorstellung (opt).
+// Onboarding Step 2: Basis-Daten für den CV-Header.
+// Vorname, Nachname, Geburtsjahr (opt), PLZ + Stadt, Führerschein, PKW,
+// Verfügbar-Datum, Gehaltsvorstellung (opt).
 
 import { useEffect } from 'react'
 import { View } from 'react-native'
-import { Controller, useForm } from 'react-hook-form'
+import { Controller, useForm, useWatch } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useRouter } from 'expo-router'
 
 import { basicsSchema, type BasicsInput } from '@nexaai/types'
 
 import { useSession } from '@/lib/auth'
+import { lookupCity } from '@/lib/plz'
 import { saveBasics, useSeekerProfile } from '@/lib/seeker'
 import { Button } from '@/components/ui/button'
 import { FormScroll } from '@/components/ui/form-scroll'
@@ -29,6 +30,7 @@ export default function Basics() {
     control,
     handleSubmit,
     reset,
+    setValue,
     formState: { errors, isSubmitting },
   } = useForm<BasicsInput>({
     resolver: zodResolver(basicsSchema),
@@ -59,6 +61,23 @@ export default function Basics() {
     })
   }, [profile, seeker, reset])
 
+  // Autofill Stadt sobald die PLZ 5 Ziffern hat. Nur wenn die Stadt noch leer
+  // ist, damit wir keine manuelle Eingabe ueberschreiben.
+  const postalCode = useWatch({ control, name: 'postalCode' })
+  const city = useWatch({ control, name: 'city' })
+  useEffect(() => {
+    if (!/^\d{5}$/.test(postalCode ?? '')) return
+    if (city && city.length > 0) return
+    let cancelled = false
+    lookupCity(postalCode).then((match) => {
+      if (cancelled || !match) return
+      setValue('city', match, { shouldDirty: true })
+    })
+    return () => {
+      cancelled = true
+    }
+  }, [postalCode, city, setValue])
+
   const onSubmit = async (data: BasicsInput) => {
     if (!userId) return
     const { error } = await saveBasics(userId, data)
@@ -80,7 +99,7 @@ export default function Basics() {
       }}
       keyboardShouldPersistTaps="handled"
     >
-      <UIText variant="heading">Ueber dich</UIText>
+      <UIText variant="heading">Über dich</UIText>
       <View className="mt-2">
         <UIText variant="muted">
           Diese Daten stehen im Kopf deines Lebenslaufs. Nachname sieht der Recruiter erst nach dem Match.
@@ -163,7 +182,7 @@ export default function Basics() {
           control={control}
           name="hasDriverLicense"
           render={({ field: { onChange, value } }) => (
-            <Switch label="Fuehrerschein" value={value} onValueChange={onChange} />
+            <Switch label="Führerschein" value={value} onValueChange={onChange} />
           )}
         />
         <Controller
@@ -178,7 +197,7 @@ export default function Basics() {
           name="availableFrom"
           render={({ field: { onChange, value } }) => (
             <DatePicker
-              label="Verfuegbar ab"
+              label="Verfügbar ab"
               value={value ?? null}
               onChangeIso={onChange}
               error={errors.availableFrom?.message}
@@ -205,7 +224,7 @@ export default function Basics() {
       </View>
 
       <View className="mt-8">
-        <Button onPress={handleSubmit(onSubmit)} disabled={isSubmitting}>
+        <Button onPress={handleSubmit(onSubmit)} loading={isSubmitting}>
           Weiter
         </Button>
       </View>

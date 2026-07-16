@@ -2,7 +2,10 @@
 // selected skills (chips row). Used by the preview screen and the home view.
 
 import { View } from 'react-native'
+import { Ionicons } from '@expo/vector-icons'
+import type { ComponentProps } from 'react'
 
+import { brand } from '@/lib/colors'
 import { Chip } from '@/components/ui/chip'
 import { Text } from '@/components/ui/text'
 
@@ -17,6 +20,17 @@ import type {
   SkillRow,
   WorkExperienceRow,
 } from '@/lib/seeker'
+
+type IconName = ComponentProps<typeof Ionicons>['name']
+
+function SectionTitle({ icon, children }: { icon: IconName; children: string }) {
+  return (
+    <View className="flex-row items-center gap-2">
+      <Ionicons name={icon} size={20} color={brand[800]} />
+      <Text variant="subheading">{children}</Text>
+    </View>
+  )
+}
 
 export function CvView({
   profile,
@@ -47,7 +61,7 @@ export function CvView({
 
       {workExperiences.length > 0 && (
         <View className="mt-6">
-          <Text variant="subheading">Berufserfahrung</Text>
+          <SectionTitle icon="briefcase-outline">Berufserfahrung</SectionTitle>
           <View className="mt-2 h-px bg-brand-200" />
           {workExperiences.map((row) => (
             <CvExperienceBlock
@@ -66,7 +80,7 @@ export function CvView({
 
       {educations.length > 0 && (
         <View className="mt-6">
-          <Text variant="subheading">Ausbildung</Text>
+          <SectionTitle icon="school-outline">Ausbildung</SectionTitle>
           <View className="mt-2 h-px bg-brand-200" />
           {educations.map((row) => (
             <CvEducationBlock
@@ -85,7 +99,7 @@ export function CvView({
 
       {skills.length > 0 && (
         <View className="mt-6">
-          <Text variant="subheading">Skills</Text>
+          <SectionTitle icon="sparkles-outline">Skills</SectionTitle>
           <View className="mt-2 h-px bg-brand-200" />
           <View className="mt-3 flex-row flex-wrap gap-2">
             {skills.map((s) => (

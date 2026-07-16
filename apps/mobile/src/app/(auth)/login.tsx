@@ -105,7 +105,7 @@ export default function Login() {
           )}
 
           <View className="mt-8">
-            <Button onPress={handleSubmit(onSubmit)} disabled={isSubmitting}>
+            <Button onPress={handleSubmit(onSubmit)} loading={isSubmitting}>
               Einloggen
             </Button>
           </View>
@@ -122,7 +122,7 @@ export default function Login() {
             </View>
             <Text className="mt-6 text-center text-xs text-brand-500">
               Mit dem Login akzeptierst du die Nutzungsbedingungen und
-              Datenschutzerklaerung.
+              Datenschutzerklärung.
             </Text>
           </View>
         </View>

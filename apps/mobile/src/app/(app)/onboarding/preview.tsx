@@ -1,5 +1,5 @@
 // Onboarding Step 6: Preview + Approve.
-// Rendert den fertigen CV genau wie er spaeter Recruitern gezeigt wird.
+// Rendert den fertigen CV genau wie er später Recruitern gezeigt wird.
 
 import { ScrollView, View } from 'react-native'
 import { useRouter } from 'expo-router'
@@ -67,7 +67,7 @@ export default function Preview() {
       <View className="mt-10 gap-3">
         <Button onPress={onApprove}>Freigeben</Button>
         <Button variant="ghost" onPress={() => router.back()}>
-          Zurueck bearbeiten
+          Zurück bearbeiten
         </Button>
       </View>
     </ScrollView>

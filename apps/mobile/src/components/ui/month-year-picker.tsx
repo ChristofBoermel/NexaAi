@@ -19,7 +19,7 @@ export function MonthYearPicker({
   value,
   onChange,
   allowClear = false,
-  placeholder = 'Bitte waehlen',
+  placeholder = 'Bitte wählen',
 }: {
   label: string
   value: Value | null
@@ -124,7 +124,7 @@ export function MonthYearPicker({
                   }}
                   className="rounded-lg px-4 py-2"
                 >
-                  <Text className="text-base text-brand-500">Loeschen</Text>
+                  <Text className="text-base text-brand-500">Löschen</Text>
                 </Pressable>
               )}
               <Pressable
@@ -140,7 +140,7 @@ export function MonthYearPicker({
                 }}
                 className="rounded-lg bg-brand-800 px-4 py-2"
               >
-                <Text className="text-base font-semibold text-white">Uebernehmen</Text>
+                <Text className="text-base font-semibold text-white">Übernehmen</Text>
               </Pressable>
             </View>
           </View>

@@ -1,12 +1,13 @@
 // Home. Nach erfolgreichem Onboarding zeigt sie den freigegebenen CV.
 // Solange cv_approved_at null ist, gehen wir direkt in den Wizard.
 
-import { Redirect } from 'expo-router'
-import { useRouter } from 'expo-router'
+import { Redirect, useRouter } from 'expo-router'
 import { ScrollView, View } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
+import { Ionicons } from '@expo/vector-icons'
 
 import { signOut } from '@/lib/auth'
+import { brand, neutral } from '@/lib/colors'
 import {
   useEducations,
   useSeekerProfile,
@@ -15,7 +16,6 @@ import {
 } from '@/lib/seeker'
 import { Button } from '@/components/ui/button'
 import { LogoMark } from '@/components/ui/logo-mark'
-import { Text } from '@/components/ui/text'
 import { CvView } from '@/components/cv/cv-view'
 
 export default function Home() {
@@ -59,10 +59,17 @@ export default function Home() {
         </View>
 
         <View className="mt-10 gap-3">
-          <Button onPress={() => router.push('/(app)/onboarding/beruf')}>
+          <Button
+            onPress={() => router.push('/(app)/onboarding/beruf')}
+            leadingIcon={<Ionicons name="create-outline" size={20} color={neutral.white} />}
+          >
             Bearbeiten
           </Button>
-          <Button variant="ghost" onPress={() => signOut()}>
+          <Button
+            variant="ghost"
+            onPress={() => signOut()}
+            leadingIcon={<Ionicons name="log-out-outline" size={20} color={brand[800]} />}
+          >
             Abmelden
           </Button>
         </View>

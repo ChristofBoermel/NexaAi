@@ -67,11 +67,11 @@ export function CvHeader({
 
       <View className="mt-4">
         {firstName && <Row label="Name" value={firstName} />}
-        <Row label="Fuehrerschein" value={hasDriverLicense ? 'Ja' : 'Nein'} />
+        <Row label="Führerschein" value={hasDriverLicense ? 'Ja' : 'Nein'} />
         <Row label="PKW" value={hasCar ? 'Ja' : 'Nein'} />
         {age !== '' && <Row label="Alter" value={age} />}
         {wohnort !== '' && <Row label="Wohnort" value={wohnort} />}
-        {availableFrom && <Row label="Verfuegbar" value={formatDate(availableFrom)} />}
+        {availableFrom && <Row label="Verfügbar" value={formatDate(availableFrom)} />}
         {salaryEur != null && <Row label="Gehalt" value={`${salaryEur.toLocaleString('de-DE')} EUR`} />}
       </View>
     </View>

@@ -117,7 +117,7 @@ export default function Ausbildung() {
                 <Pressable
                   onPress={() => onDelete(row.id)}
                   hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}
-                  accessibilityLabel="Ausbildung loeschen"
+                  accessibilityLabel="Ausbildung löschen"
                   accessibilityRole="button"
                 >
                   <Ionicons name="trash-outline" size={20} color={brand[500]} />
@@ -127,15 +127,22 @@ export default function Ausbildung() {
           ))}
 
           {items.length === 0 && (
-            <View className="rounded-lg border border-dashed border-brand-200 px-4 py-6">
-              <UIText variant="muted">Noch keine Ausbildung erfasst.</UIText>
+            <View className="items-center rounded-lg border border-dashed border-brand-200 px-4 py-8">
+              <Ionicons name="school-outline" size={32} color={brand[300]} />
+              <View className="mt-2">
+                <UIText variant="muted">Noch keine Ausbildung erfasst.</UIText>
+              </View>
             </View>
           )}
         </View>
 
         <View className="mt-4">
-          <Button variant="ghost" onPress={openAdd}>
-            Neue Ausbildung hinzufuegen
+          <Button
+            variant="ghost"
+            onPress={openAdd}
+            leadingIcon={<Ionicons name="add" size={20} color={brand[800]} />}
+          >
+            Neue Ausbildung hinzufügen
           </Button>
         </View>
 

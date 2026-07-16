@@ -1,6 +1,6 @@
 // Onboarding Step 3: Berufserfahrung.
-// Liste bestehender Eintraege, Modal fuer Add/Edit, Delete mit Tap auf X.
-// "Weiter" fuehrt zur Ausbildung, auch wenn 0 Eintraege (nicht jeder hat welche).
+// Liste bestehender Einträge, Modal für Add/Edit, Delete mit Tap auf X.
+// "Weiter" fuehrt zur Ausbildung, auch wenn 0 Einträge (nicht jeder hat welche).
 
 import { useState } from 'react'
 import { Pressable, ScrollView, Text, View } from 'react-native'
@@ -120,7 +120,7 @@ export default function Erfahrung() {
                 <Pressable
                   onPress={() => onDelete(row.id)}
                   hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}
-                  accessibilityLabel="Station loeschen"
+                  accessibilityLabel="Station löschen"
                   accessibilityRole="button"
                 >
                   <Ionicons name="trash-outline" size={20} color={brand[500]} />
@@ -130,15 +130,22 @@ export default function Erfahrung() {
           ))}
 
           {items.length === 0 && (
-            <View className="rounded-lg border border-dashed border-brand-200 px-4 py-6">
-              <UIText variant="muted">Noch keine Stationen erfasst.</UIText>
+            <View className="items-center rounded-lg border border-dashed border-brand-200 px-4 py-8">
+              <Ionicons name="briefcase-outline" size={32} color={brand[300]} />
+              <View className="mt-2">
+                <UIText variant="muted">Noch keine Stationen erfasst.</UIText>
+              </View>
             </View>
           )}
         </View>
 
         <View className="mt-4">
-          <Button variant="ghost" onPress={openAdd}>
-            Neue Station hinzufuegen
+          <Button
+            variant="ghost"
+            onPress={openAdd}
+            leadingIcon={<Ionicons name="add" size={20} color={brand[800]} />}
+          >
+            Neue Station hinzufügen
           </Button>
         </View>
 

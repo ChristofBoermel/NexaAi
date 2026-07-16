@@ -71,7 +71,7 @@ export default function Beruf() {
         <UIText variant="heading">Was ist dein Beruf?</UIText>
         <View className="mt-2">
           <UIText variant="muted">
-            Genau diese Bezeichnung erscheint spaeter oben in deinem Lebenslauf.
+            Genau diese Bezeichnung erscheint später oben in deinem Lebenslauf.
           </UIText>
         </View>
 
@@ -92,7 +92,7 @@ export default function Beruf() {
         </View>
 
         <View className="mt-auto pt-8">
-          <Button onPress={handleSubmit(onSubmit)} disabled={isSubmitting}>
+          <Button onPress={handleSubmit(onSubmit)} loading={isSubmitting}>
             Weiter
           </Button>
         </View>

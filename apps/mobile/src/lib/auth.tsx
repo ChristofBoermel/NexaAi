@@ -1,7 +1,7 @@
 // SessionProvider haelt die aktuelle Supabase-Session im React-Tree.
-// useSession() liest Session + Loading-State fuer Guards und UI.
+// useSession() liest Session + Loading-State für Guards und UI.
 // signInWithPassword / signUpWithPassword / signOut sind thin wrappers,
-// damit Screens nicht direkt auf supabase.auth zugreifen muessen.
+// damit Screens nicht direkt auf supabase.auth zugreifen müssen.
 
 import { createContext, useContext, useEffect, useState } from 'react'
 import type { ReactNode } from 'react'
@@ -79,21 +79,21 @@ export async function requestPasswordReset(email: string) {
   return { error }
 }
 
-// Setzt das Passwort fuer die aktuell eingeloggte Session neu.
+// Setzt das Passwort für die aktuell eingeloggte Session neu.
 // Der Reset-Callback muss vorher via Deep-Link eine Recovery-Session etabliert haben.
 export async function updatePassword(newPassword: string) {
   const { error } = await supabase.auth.updateUser({ password: newPassword })
   return { error }
 }
 
-// Deep-Link Handler fuer PKCE-Flow: tauscht den einmaligen Code aus dem
+// Deep-Link Handler für PKCE-Flow: tauscht den einmaligen Code aus dem
 // Recovery- oder Signup-Link gegen eine Session ein.
 export async function exchangeCodeForSession(code: string) {
   const { data, error } = await supabase.auth.exchangeCodeForSession(code)
   return { data, error }
 }
 
-// Deep-Link Handler fuer Legacy Signup-Confirmation, wenn der Link einen
+// Deep-Link Handler für Legacy Signup-Confirmation, wenn der Link einen
 // token_hash statt eines Codes enthaelt.
 export async function verifySignupToken(tokenHash: string) {
   const { data, error } = await supabase.auth.verifyOtp({

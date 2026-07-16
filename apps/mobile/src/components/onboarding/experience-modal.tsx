@@ -6,9 +6,11 @@ import { Modal, Pressable, Text, TextInput, View } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { Controller, useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { Ionicons } from '@expo/vector-icons'
 
 import { workExperienceSchema, type WorkExperienceInput } from '@nexaai/types'
 
+import { brand } from '@/lib/colors'
 import { Button } from '@/components/ui/button'
 import { FormScroll } from '@/components/ui/form-scroll'
 import { Input } from '@/components/ui/input'
@@ -90,8 +92,13 @@ export function ExperienceModal({
           <UIText variant="subheading">
             {initial?.id ? 'Erfahrung bearbeiten' : 'Neue Erfahrung'}
           </UIText>
-          <Pressable onPress={onDismiss}>
-            <Text className="text-base text-brand-500">Abbrechen</Text>
+          <Pressable
+            onPress={onDismiss}
+            hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}
+            accessibilityLabel="Schließen"
+            accessibilityRole="button"
+          >
+            <Ionicons name="close" size={24} color={brand[500]} />
           </Pressable>
         </View>
 
@@ -176,9 +183,9 @@ export function ExperienceModal({
                     value={value ?? ''}
                     onChangeText={onChange}
                     placeholder={
-                      'z.B.\nWartung und Reparatur von Sanitaeranlagen\nDichtheitspruefungen'
+                      'z.B.\nWartung und Reparatur von Sanitäranlagen\nDichtheitsprüfungen'
                     }
-                    placeholderTextColor="#829FB8"
+                    placeholderTextColor={brand[300]}
                     multiline
                     textAlignVertical="top"
                     className="min-h-32 rounded-lg border border-brand-200 px-4 py-4 text-base text-brand-900"
@@ -189,7 +196,7 @@ export function ExperienceModal({
           </View>
 
           <View className="mt-8">
-            <Button onPress={handleSubmit(onSubmit)} disabled={isSubmitting}>
+            <Button onPress={handleSubmit(onSubmit)} loading={isSubmitting}>
               Speichern
             </Button>
           </View>

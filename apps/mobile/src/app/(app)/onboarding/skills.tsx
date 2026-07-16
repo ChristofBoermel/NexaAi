@@ -80,7 +80,7 @@ export default function Skills() {
       <UIText variant="heading">Skills</UIText>
       <View className="mt-2">
         <UIText variant="muted">
-          {`Waehle bis zu ${MAX_SKILLS} Skills aus, die dich am besten beschreiben.`}
+          {`Wähle bis zu ${MAX_SKILLS} Skills aus, die dich am besten beschreiben.`}
         </UIText>
       </View>
 
@@ -94,7 +94,7 @@ export default function Skills() {
             ))}
           </View>
         ) : (
-          <UIText variant="muted">Noch keine Skills ausgewaehlt.</UIText>
+          <UIText variant="muted">Noch keine Skills ausgewählt.</UIText>
         )}
       </View>
 
@@ -109,7 +109,7 @@ export default function Skills() {
       </View>
 
       <View className="mt-8">
-        <Button onPress={onNext} disabled={saving || selected.length === 0}>
+        <Button onPress={onNext} loading={saving} disabled={selected.length === 0}>
           Weiter
         </Button>
       </View>

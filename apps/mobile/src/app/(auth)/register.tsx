@@ -59,18 +59,18 @@ export default function Register() {
             </View>
             <View className="mt-10">
               <UIText variant="heading">
-                E-Mail bestaetigen
+                E-Mail bestätigen
               </UIText>
             </View>
             <View className="mt-2">
               <UIText variant="muted">
-                Wir haben dir einen Bestaetigungslink gesendet. Klick den Link in der
+                Wir haben dir einen Bestätigungslink gesendet. Klick den Link in der
                 E-Mail um dein Konto zu aktivieren.
               </UIText>
             </View>
             <View className="mt-auto">
               <Button onPress={() => router.replace('/(auth)/login')}>
-                Zurueck zum Login
+                Zurück zum Login
               </Button>
             </View>
           </View>
@@ -139,7 +139,7 @@ export default function Register() {
               name="passwordConfirm"
               render={({ field: { onChange, value } }) => (
                 <Input
-                  label="Passwort bestaetigen"
+                  label="Passwort bestätigen"
                   value={value}
                   onChangeText={onChange}
                   error={errors.passwordConfirm?.message}
@@ -157,7 +157,7 @@ export default function Register() {
           )}
 
           <View className="mt-8">
-            <Button onPress={handleSubmit(onSubmit)} disabled={isSubmitting}>
+            <Button onPress={handleSubmit(onSubmit)} loading={isSubmitting}>
               Registrieren
             </Button>
           </View>
@@ -174,7 +174,7 @@ export default function Register() {
             </View>
             <Text className="mt-6 text-center text-xs text-brand-500">
               Mit der Registrierung akzeptierst du die Nutzungsbedingungen und
-              Datenschutzerklaerung.
+              Datenschutzerklärung.
             </Text>
           </View>
         </View>
