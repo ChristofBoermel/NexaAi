@@ -2,6 +2,8 @@
 
 import { Text, TextInput, View } from 'react-native'
 
+import { brand } from '@/lib/colors'
+
 export function Input({
   label,
   value,
@@ -28,7 +30,7 @@ export function Input({
         value={value}
         onChangeText={onChangeText}
         placeholder={placeholder}
-        placeholderTextColor="#829FB8"
+        placeholderTextColor={brand[300]}
         secureTextEntry={secureTextEntry}
         autoCapitalize={autoCapitalize}
         keyboardType={keyboardType}

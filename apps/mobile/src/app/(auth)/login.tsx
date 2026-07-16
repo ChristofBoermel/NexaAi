@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { ScrollView, Text, View } from 'react-native'
+import { Text, View } from 'react-native'
 
 import { useForm, Controller } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -10,6 +10,7 @@ import { loginSchema, type LoginInput } from '@nexaai/types'
 
 import { signInWithPassword } from '@/lib/auth'
 import { Button } from '@/components/ui/button'
+import { FormScroll } from '@/components/ui/form-scroll'
 import { Input } from '@/components/ui/input'
 import { Text as UIText } from '@/components/ui/text'
 import { LogoMark } from '@/components/ui/logo-mark'
@@ -33,7 +34,7 @@ export default function Login() {
 
   return (
     <SafeAreaView className="flex-1 bg-white">
-      <ScrollView
+      <FormScroll
         contentContainerStyle={{
           flexGrow: 1,
           paddingHorizontal: 24,
@@ -125,7 +126,7 @@ export default function Login() {
             </Text>
           </View>
         </View>
-      </ScrollView>
+      </FormScroll>
     </SafeAreaView>
   )
 }

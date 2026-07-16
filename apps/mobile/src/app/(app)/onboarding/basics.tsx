@@ -3,7 +3,7 @@
 // Verfuegbar-Datum, Gehaltsvorstellung (opt).
 
 import { useEffect } from 'react'
-import { ScrollView, View } from 'react-native'
+import { View } from 'react-native'
 import { Controller, useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useRouter } from 'expo-router'
@@ -13,6 +13,7 @@ import { basicsSchema, type BasicsInput } from '@nexaai/types'
 import { useSession } from '@/lib/auth'
 import { saveBasics, useSeekerProfile } from '@/lib/seeker'
 import { Button } from '@/components/ui/button'
+import { FormScroll } from '@/components/ui/form-scroll'
 import { DatePicker } from '@/components/ui/date-picker'
 import { Input } from '@/components/ui/input'
 import { Switch } from '@/components/ui/switch'
@@ -70,7 +71,7 @@ export default function Basics() {
   }
 
   return (
-    <ScrollView
+    <FormScroll
       className="flex-1 bg-white"
       contentContainerStyle={{
         paddingHorizontal: 24,
@@ -208,6 +209,6 @@ export default function Basics() {
           Weiter
         </Button>
       </View>
-    </ScrollView>
+    </FormScroll>
   )
 }

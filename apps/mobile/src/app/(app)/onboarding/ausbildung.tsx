@@ -4,8 +4,11 @@
 import { useState } from 'react'
 import { Pressable, ScrollView, Text, View } from 'react-native'
 import { useRouter } from 'expo-router'
+import { Ionicons } from '@expo/vector-icons'
 
 import { type EducationInput } from '@nexaai/types'
+
+import { brand } from '@/lib/colors'
 
 import { useSession } from '@/lib/auth'
 import {
@@ -114,8 +117,10 @@ export default function Ausbildung() {
                 <Pressable
                   onPress={() => onDelete(row.id)}
                   hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}
+                  accessibilityLabel="Ausbildung loeschen"
+                  accessibilityRole="button"
                 >
-                  <Text className="px-2 text-lg font-bold text-brand-500">x</Text>
+                  <Ionicons name="trash-outline" size={20} color={brand[500]} />
                 </Pressable>
               </View>
             </Pressable>

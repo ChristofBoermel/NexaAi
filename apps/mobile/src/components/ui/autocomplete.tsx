@@ -4,6 +4,8 @@
 import { useMemo, useState } from 'react'
 import { FlatList, Pressable, Text, TextInput, View } from 'react-native'
 
+import { brand } from '@/lib/colors'
+
 type Option = { id: string; label: string }
 
 export function Autocomplete({
@@ -43,7 +45,7 @@ export function Autocomplete({
         value={query}
         onChangeText={setQuery}
         placeholder={placeholder}
-        placeholderTextColor="#829FB8"
+        placeholderTextColor={brand[300]}
         editable={!disabled}
         onFocus={() => setFocused(true)}
         onBlur={() => setTimeout(() => setFocused(false), 150)}

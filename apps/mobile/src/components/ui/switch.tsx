@@ -2,6 +2,8 @@
 
 import { Switch as RNSwitch, Text, View } from 'react-native'
 
+import { brand, neutral } from '@/lib/colors'
+
 export function Switch({
   label,
   value,
@@ -24,8 +26,8 @@ export function Switch({
         value={value}
         onValueChange={onValueChange}
         disabled={disabled}
-        trackColor={{ false: '#B0C4D5', true: '#0E3652' }}
-        thumbColor="#FFFFFF"
+        trackColor={{ false: brand[200], true: brand[800] }}
+        thumbColor={neutral.white}
       />
     </View>
   )

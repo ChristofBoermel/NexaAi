@@ -2,7 +2,7 @@
 // Handles the "aktuelle Anstellung" toggle (nulls out end month + end year).
 
 import { useEffect, useState } from 'react'
-import { Modal, Pressable, ScrollView, Text, TextInput, View } from 'react-native'
+import { Modal, Pressable, Text, TextInput, View } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { Controller, useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -10,6 +10,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { workExperienceSchema, type WorkExperienceInput } from '@nexaai/types'
 
 import { Button } from '@/components/ui/button'
+import { FormScroll } from '@/components/ui/form-scroll'
 import { Input } from '@/components/ui/input'
 import { MonthYearPicker } from '@/components/ui/month-year-picker'
 import { Switch } from '@/components/ui/switch'
@@ -94,7 +95,7 @@ export function ExperienceModal({
           </Pressable>
         </View>
 
-        <ScrollView
+        <FormScroll
           contentContainerStyle={{
             paddingHorizontal: 24,
             paddingVertical: 24,
@@ -192,7 +193,7 @@ export function ExperienceModal({
               Speichern
             </Button>
           </View>
-        </ScrollView>
+        </FormScroll>
       </SafeAreaView>
     </Modal>
   )

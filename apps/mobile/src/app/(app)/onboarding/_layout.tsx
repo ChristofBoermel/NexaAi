@@ -32,19 +32,14 @@ export default function OnboardingLayout() {
 
   return (
     <SafeAreaView className="flex-1 bg-white" edges={['top']}>
-      <View className="border-b border-brand-100 px-6 py-4">
+      <View className="border-b border-brand-100 px-6 py-3">
         <View className="flex-row items-center justify-between">
           <LogoMark size="sm" />
-          <Text variant="muted">{`Schritt ${step} von ${STEPS.length}`}</Text>
+          <Text variant="muted">{label !== '' ? label : `Schritt ${step} von ${STEPS.length}`}</Text>
         </View>
-        <View className="mt-3">
+        <View className="mt-2">
           <ProgressBar step={step} total={STEPS.length} />
         </View>
-        {label !== '' && (
-          <View className="mt-2">
-            <Text variant="muted">{label}</Text>
-          </View>
-        )}
       </View>
       <Slot />
     </SafeAreaView>

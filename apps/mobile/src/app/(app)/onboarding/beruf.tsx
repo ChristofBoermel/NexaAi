@@ -2,7 +2,7 @@
 // Ohne Titel geht es nicht weiter, das ist der Kopf im CV.
 
 import { useEffect } from 'react'
-import { ScrollView, Text, View } from 'react-native'
+import { Text, View } from 'react-native'
 import { Controller, useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useRouter } from 'expo-router'
@@ -11,6 +11,7 @@ import { z } from 'zod'
 import { useSession } from '@/lib/auth'
 import { saveJobTitle, useSeekerProfile } from '@/lib/seeker'
 import { Button } from '@/components/ui/button'
+import { FormScroll } from '@/components/ui/form-scroll'
 import { Input } from '@/components/ui/input'
 import { Text as UIText } from '@/components/ui/text'
 
@@ -57,7 +58,7 @@ export default function Beruf() {
   }
 
   return (
-    <ScrollView
+    <FormScroll
       className="flex-1 bg-white"
       contentContainerStyle={{
         flexGrow: 1,
@@ -96,6 +97,6 @@ export default function Beruf() {
           </Button>
         </View>
       </View>
-    </ScrollView>
+    </FormScroll>
   )
 }

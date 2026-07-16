@@ -2,7 +2,7 @@
 // User gibt Email ein, Supabase schickt Reset-Link, wir zeigen Confirmation.
 
 import { useState } from 'react'
-import { ScrollView, Text, View } from 'react-native'
+import { Text, View } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { Controller, useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -12,6 +12,7 @@ import { resetRequestSchema, type ResetRequestInput } from '@nexaai/types'
 
 import { requestPasswordReset } from '@/lib/auth'
 import { Button } from '@/components/ui/button'
+import { FormScroll } from '@/components/ui/form-scroll'
 import { Input } from '@/components/ui/input'
 import { LogoMark } from '@/components/ui/logo-mark'
 import { Text as UIText } from '@/components/ui/text'
@@ -42,7 +43,7 @@ export default function PasswordReset() {
   if (sent) {
     return (
       <SafeAreaView className="flex-1 bg-white">
-        <ScrollView
+        <FormScroll
           contentContainerStyle={{
             flexGrow: 1,
             paddingHorizontal: 24,
@@ -67,14 +68,14 @@ export default function PasswordReset() {
               </Button>
             </View>
           </View>
-        </ScrollView>
+        </FormScroll>
       </SafeAreaView>
     )
   }
 
   return (
     <SafeAreaView className="flex-1 bg-white">
-      <ScrollView
+      <FormScroll
         contentContainerStyle={{
           flexGrow: 1,
           paddingHorizontal: 24,
@@ -132,7 +133,7 @@ export default function PasswordReset() {
             </View>
           </View>
         </View>
-      </ScrollView>
+      </FormScroll>
     </SafeAreaView>
   )
 }

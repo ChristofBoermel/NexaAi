@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@expo/metro-runtime": "~57.0.2",
+    "@expo/vector-icons": "^15.0.2",
     "@hookform/resolvers": "^3.9.0",
     "@nexaai/config": "workspace:*",
     "@nexaai/db": "workspace:*",

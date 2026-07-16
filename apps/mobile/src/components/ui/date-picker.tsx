@@ -3,6 +3,8 @@
 
 import { Text, TextInput, View } from 'react-native'
 
+import { brand } from '@/lib/colors'
+
 function toDisplay(iso: string | null | undefined): string {
   if (!iso) return ''
   const match = /^(\d{4})-(\d{2})-(\d{2})$/.exec(iso)
@@ -36,7 +38,7 @@ export function DatePicker({
         value={toDisplay(value)}
         onChangeText={(text) => onChangeIso(toIso(text))}
         placeholder={placeholder}
-        placeholderTextColor="#829FB8"
+        placeholderTextColor={brand[300]}
         keyboardType="numeric"
         maxLength={10}
         className={`rounded-lg border px-4 py-4 text-base text-brand-900 ${
