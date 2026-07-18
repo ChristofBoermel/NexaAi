@@ -105,9 +105,8 @@ export function EducationModal({
           contentContainerStyle={{
             paddingHorizontal: 24,
             paddingVertical: 24,
-            paddingBottom: 48,
+            paddingBottom: 240,
           }}
-          keyboardShouldPersistTaps="handled"
         >
           <View className="gap-4">
             <Controller

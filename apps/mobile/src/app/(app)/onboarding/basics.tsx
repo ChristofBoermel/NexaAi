@@ -3,14 +3,16 @@
 // Verfügbar-Datum, Gehaltsvorstellung (opt).
 
 import { useEffect } from 'react'
-import { View } from 'react-native'
+import { Text, View } from 'react-native'
 import { Controller, useForm, useWatch } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useRouter } from 'expo-router'
+import { Ionicons } from '@expo/vector-icons'
 
 import { basicsSchema, type BasicsInput } from '@nexaai/types'
 
 import { useSession } from '@/lib/auth'
+import { brand } from '@/lib/colors'
 import { lookupCity } from '@/lib/plz'
 import { saveBasics, useSeekerProfile } from '@/lib/seeker'
 import { Button } from '@/components/ui/button'
@@ -209,7 +211,7 @@ export default function Basics() {
           name="salaryExpectation"
           render={({ field: { onChange, value } }) => (
             <Input
-              label="Gehaltsvorstellung in EUR pro Monat (optional)"
+              label="Gehaltsvorstellung EUR pro Monat (optional)"
               value={value != null ? String(value) : ''}
               onChangeText={(t) => {
                 const n = parseInt(t, 10)
@@ -223,7 +225,14 @@ export default function Basics() {
         />
       </View>
 
-      <View className="mt-8">
+      <View className="mt-6 flex-row items-start gap-2 rounded-xl bg-brand-50 px-4 py-3">
+        <Ionicons name="lock-closed-outline" size={16} color={brand[500]} />
+        <Text className="flex-1 text-xs leading-5 text-brand-500">
+          Dein Nachname und deine Gehaltsvorstellung bleiben privat. Ein Recruiter sieht sie erst, wenn ihr beide Interesse gezeigt habt.
+        </Text>
+      </View>
+
+      <View className="mt-6">
         <Button onPress={handleSubmit(onSubmit)} loading={isSubmitting}>
           Weiter
         </Button>

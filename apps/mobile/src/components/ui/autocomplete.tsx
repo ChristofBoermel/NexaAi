@@ -1,8 +1,11 @@
 // Text input with a dropdown list of suggestions filtered by the input text.
 // Caller supplies the full option list; filtering is local and case-insensitive.
+// Rendered as a plain View + map, not a FlatList, because the max result count
+// is small and this Autocomplete is often placed inside a ScrollView (nesting
+// virtualized lists inside ScrollView breaks windowing in RN).
 
 import { useMemo, useState } from 'react'
-import { FlatList, Pressable, Text, TextInput, View } from 'react-native'
+import { Pressable, Text, TextInput, View } from 'react-native'
 
 import { brand } from '@/lib/colors'
 
@@ -61,22 +64,18 @@ export function Autocomplete({
               <Text className="text-sm text-brand-500">{emptyLabel}</Text>
             </View>
           ) : (
-            <FlatList
-              data={filtered}
-              keyExtractor={(item) => item.id}
-              keyboardShouldPersistTaps="handled"
-              renderItem={({ item }) => (
-                <Pressable
-                  onPress={() => {
-                    onSelect(item)
-                    setQuery('')
-                  }}
-                  className="border-b border-brand-100 px-4 py-3"
-                >
-                  <Text className="text-base text-brand-900">{item.label}</Text>
-                </Pressable>
-              )}
-            />
+            filtered.map((item) => (
+              <Pressable
+                key={item.id}
+                onPress={() => {
+                  onSelect(item)
+                  setQuery('')
+                }}
+                className="border-b border-brand-100 px-4 py-3"
+              >
+                <Text className="text-base text-brand-900">{item.label}</Text>
+              </Pressable>
+            ))
           )}
         </View>
       )}
