@@ -72,10 +72,17 @@ export default function Home() {
 
         <View className="mt-10 gap-3">
           <Button
-            onPress={() => router.push('/(app)/onboarding/beruf')}
-            leadingIcon={<Ionicons name="create-outline" size={20} color={neutral.white} />}
+            onPress={() => router.push('/(app)/feed')}
+            leadingIcon={<Ionicons name="briefcase-outline" size={20} color={neutral.white} />}
           >
-            Bearbeiten
+            Job-Feed öffnen
+          </Button>
+          <Button
+            variant="ghost"
+            onPress={() => router.push('/(app)/onboarding/beruf')}
+            leadingIcon={<Ionicons name="create-outline" size={20} color={brand[800]} />}
+          >
+            CV bearbeiten
           </Button>
           <Button
             variant="ghost"
