@@ -1,11 +1,13 @@
-// Job card shown in the swipe deck. Compact by design: company pseudonym at
-// the top, job title big, one-line meta below, match-score badge on the right.
+// Editorial job card. Company as caption eyebrow, title as display heading,
+// match score as a big floating percentage rather than a decorative pill.
+// Skill guidance: non-generic pattern, content-first, breathing room.
 
 import { Pressable, Text, View } from 'react-native'
 import { Ionicons } from '@expo/vector-icons'
 
 import { brand } from '@/lib/colors'
 import type { MatchWithJob } from '@/lib/jobs'
+import { Text as UIText } from '@/components/ui/text'
 
 function salaryLabel(min: number | null, max: number | null): string {
   if (min == null && max == null) return 'Gehalt auf Anfrage'
@@ -26,51 +28,56 @@ export function JobCard({
   const { job } = match
   const company = job.company
   const companyName = company.show_anonymous ? company.pseudonym : company.display_name
-  const locationParts: string[] = []
-  if (job.remote_ok) locationParts.push('Remote möglich')
+  const locationLine = job.remote_ok ? 'Remote möglich' : 'Standort in Beschreibung'
 
   return (
     <Pressable
       onPress={onTap}
-      className="h-full rounded-2xl border border-brand-100 bg-white p-6"
+      className="h-full rounded-3xl bg-cream-50 p-7"
       style={{
-        shadowColor: brand[900],
-        shadowOpacity: 0.08,
-        shadowRadius: 12,
-        shadowOffset: { width: 0, height: 6 },
-        elevation: 4,
+        shadowColor: brand[950],
+        shadowOpacity: 0.14,
+        shadowRadius: 20,
+        shadowOffset: { width: 0, height: 10 },
+        elevation: 6,
       }}
     >
       <View className="flex-row items-start justify-between">
-        <View className="flex-1 pr-3">
-          <Text className="text-sm font-medium text-brand-500">{companyName}</Text>
-          <View className="mt-2">
-            <Text className="text-2xl font-bold text-brand-800">{job.title}</Text>
-          </View>
+        <View className="flex-1 pr-4">
+          <UIText variant="caption">{companyName}</UIText>
         </View>
-        <View className="items-center rounded-full bg-brand-100 px-3 py-1">
-          <Text className="text-lg font-bold text-brand-800">{match.score_pct}%</Text>
-          <Text className="text-[10px] font-medium uppercase text-brand-500">Match</Text>
+        <View className="items-end">
+          <Text className="text-4xl font-bold leading-none text-brand-800">
+            {match.score_pct}
+          </Text>
+          <Text className="text-[10px] font-semibold uppercase tracking-widest text-brand-500">
+            % Match
+          </Text>
         </View>
       </View>
 
-      <View className="mt-6 gap-2">
-        <View className="flex-row items-center gap-2">
-          <Ionicons name="location-outline" size={16} color={brand[500]} />
-          <Text className="text-sm text-brand-900">
-            {locationParts[0] ?? 'Standort in Beschreibung'}
-          </Text>
+      <View className="mt-6">
+        <UIText variant="display">{job.title}</UIText>
+      </View>
+
+      <View className="mt-auto gap-3 pt-8">
+        <View className="flex-row items-center gap-3">
+          <Ionicons name="location-outline" size={18} color={brand[500]} />
+          <Text className="text-base text-brand-900">{locationLine}</Text>
         </View>
-        <View className="flex-row items-center gap-2">
-          <Ionicons name="cash-outline" size={16} color={brand[500]} />
-          <Text className="text-sm text-brand-900">
+        <View className="flex-row items-center gap-3">
+          <Ionicons name="cash-outline" size={18} color={brand[500]} />
+          <Text className="text-base text-brand-900">
             {salaryLabel(job.salary_min_eur, job.salary_max_eur)}
           </Text>
         </View>
-      </View>
 
-      <View className="mt-auto items-center pt-6">
-        <Text className="text-xs text-brand-500">Tippen für Details</Text>
+        <View className="mt-4 flex-row items-center gap-2">
+          <Text className="text-xs uppercase tracking-widest text-brand-400">
+            Tippen für Details
+          </Text>
+          <Ionicons name="arrow-forward" size={14} color={brand[400]} />
+        </View>
       </View>
     </Pressable>
   )

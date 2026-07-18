@@ -21,6 +21,16 @@ module.exports = {
           900: '#092640',
           950: '#04182D',
         },
+        // Warm editorial cream palette for hero surfaces (feed, match, home).
+        // Complements the cool navy without leaning into fintech purple-blue tropes.
+        cream: {
+          50: '#FBF9F5',
+          100: '#F5F1E9',
+          200: '#EDE5D5',
+          300: '#DFD2B4',
+          400: '#C2B08A',
+          500: '#A08A64',
+        },
       },
     },
   },

@@ -1,6 +1,9 @@
+// Editorial hero register screen. Same rhythm as Login for full multi-screen
+// consistency. Confirm-sent state keeps the same visual system: LogoMark
+// small at top-left, caption eyebrow, display heading, muted body, CTA.
+
 import { useState } from 'react'
 import { Text, View } from 'react-native'
-
 import { useForm, Controller } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Link, useRouter } from 'expo-router'
@@ -12,8 +15,8 @@ import { signUpWithPassword } from '@/lib/auth'
 import { Button } from '@/components/ui/button'
 import { FormScroll } from '@/components/ui/form-scroll'
 import { Input } from '@/components/ui/input'
-import { Text as UIText } from '@/components/ui/text'
 import { LogoMark } from '@/components/ui/logo-mark'
+import { Text as UIText } from '@/components/ui/text'
 
 export default function Register() {
   const router = useRouter()
@@ -45,27 +48,29 @@ export default function Register() {
 
   if (confirmSent) {
     return (
-      <SafeAreaView className="flex-1 bg-white">
+      <SafeAreaView className="flex-1 bg-cream-50">
         <FormScroll
           contentContainerStyle={{
             flexGrow: 1,
-            paddingHorizontal: 24,
-            paddingVertical: 32,
+            paddingHorizontal: 28,
+            paddingTop: 24,
+            paddingBottom: 32,
           }}
         >
           <View className="flex-1">
-            <View className="items-center">
-              <LogoMark size="md" />
+            <View className="items-start">
+              <LogoMark size="sm" />
             </View>
-            <View className="mt-10">
-              <UIText variant="heading">
-                E-Mail bestätigen
-              </UIText>
+            <View className="mt-14">
+              <UIText variant="caption">Fast fertig</UIText>
             </View>
-            <View className="mt-2">
+            <View className="mt-3">
+              <UIText variant="display">Check dein Postfach.</UIText>
+            </View>
+            <View className="mt-3">
               <UIText variant="muted">
-                Wir haben dir einen Bestätigungslink gesendet. Klick den Link in der
-                E-Mail um dein Konto zu aktivieren.
+                Wir haben dir einen Bestätigungslink gesendet. Klick ihn, um dein
+                Konto zu aktivieren.
               </UIText>
             </View>
             <View className="mt-auto">
@@ -80,31 +85,34 @@ export default function Register() {
   }
 
   return (
-    <SafeAreaView className="flex-1 bg-white">
+    <SafeAreaView className="flex-1 bg-cream-50">
       <FormScroll
         contentContainerStyle={{
           flexGrow: 1,
-          paddingHorizontal: 24,
-          paddingVertical: 32,
+          paddingHorizontal: 28,
+          paddingTop: 24,
+          paddingBottom: 32,
         }}
         keyboardShouldPersistTaps="handled"
       >
         <View className="flex-1">
-          <View className="items-center">
-            <LogoMark size="md" />
+          <View className="items-start">
+            <LogoMark size="sm" />
           </View>
-          <View className="mt-10">
-            <UIText variant="heading">
-              Konto erstellen
-            </UIText>
+
+          <View className="mt-14">
+            <UIText variant="caption">In 60 Sekunden</UIText>
           </View>
-          <View className="mt-2">
+          <View className="mt-3">
+            <UIText variant="display">Konto erstellen.</UIText>
+          </View>
+          <View className="mt-3">
             <UIText variant="muted">
-              Erstell dir dein NexaAi-Profil in wenigen Schritten.
+              Danach führen wir dich durch das kurze Onboarding.
             </UIText>
           </View>
 
-          <View className="mt-10 gap-4">
+          <View className="mt-12 gap-5">
             <Controller
               control={control}
               name="email"
@@ -130,7 +138,7 @@ export default function Register() {
                   onChangeText={onChange}
                   error={errors.password?.message}
                   secureTextEntry
-                  placeholder="********"
+                  placeholder="mindestens 8 Zeichen"
                 />
               )}
             />
@@ -144,26 +152,26 @@ export default function Register() {
                   onChangeText={onChange}
                   error={errors.passwordConfirm?.message}
                   secureTextEntry
-                  placeholder="********"
+                  placeholder="nochmal eingeben"
                 />
               )}
             />
           </View>
 
           {submitError && (
-            <Text className="mt-4 text-center text-sm text-red-600">
+            <Text className="mt-6 text-center text-sm text-red-600">
               {submitError}
             </Text>
           )}
 
-          <View className="mt-8">
+          <View className="mt-10">
             <Button onPress={handleSubmit(onSubmit)} loading={isSubmitting}>
               Registrieren
             </Button>
           </View>
 
-          <View className="mt-auto">
-            <View className="flex-row justify-center">
+          <View className="mt-auto items-center pt-10">
+            <View className="flex-row items-center">
               <Text className="text-brand-900">Schon einen Account? </Text>
               <Link
                 href="/(auth)/login"
@@ -172,8 +180,8 @@ export default function Register() {
                 Anmelden
               </Link>
             </View>
-            <Text className="mt-6 text-center text-xs text-brand-500">
-              Mit der Registrierung akzeptierst du die Nutzungsbedingungen und
+            <Text className="mt-6 text-center text-xs leading-5 text-brand-500">
+              Mit der Registrierung akzeptierst du die Nutzungsbedingungen und die
               Datenschutzerklärung.
             </Text>
           </View>

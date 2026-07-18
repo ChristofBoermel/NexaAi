@@ -1,6 +1,10 @@
+// Editorial hero login screen. Warm cream backdrop, generous whitespace,
+// display-scale headline, subtle caption eyebrow. Follows the imagegen-mobile
+// skill's rules: content-first, non-generic palette, breathing room, no
+// decorative pill spam.
+
 import { useState } from 'react'
 import { Text, View } from 'react-native'
-
 import { useForm, Controller } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Link } from 'expo-router'
@@ -12,8 +16,8 @@ import { signInWithPassword } from '@/lib/auth'
 import { Button } from '@/components/ui/button'
 import { FormScroll } from '@/components/ui/form-scroll'
 import { Input } from '@/components/ui/input'
-import { Text as UIText } from '@/components/ui/text'
 import { LogoMark } from '@/components/ui/logo-mark'
+import { Text as UIText } from '@/components/ui/text'
 
 export default function Login() {
   const [submitError, setSubmitError] = useState(false)
@@ -33,31 +37,32 @@ export default function Login() {
   }
 
   return (
-    <SafeAreaView className="flex-1 bg-white">
+    <SafeAreaView className="flex-1 bg-cream-50">
       <FormScroll
         contentContainerStyle={{
           flexGrow: 1,
-          paddingHorizontal: 24,
-          paddingVertical: 32,
+          paddingHorizontal: 28,
+          paddingTop: 24,
+          paddingBottom: 32,
         }}
         keyboardShouldPersistTaps="handled"
       >
         <View className="flex-1">
-          <View className="items-center">
-            <LogoMark size="md" />
-          </View>
-          <View className="mt-10">
-            <UIText variant="heading">
-              Anmelden
-            </UIText>
-          </View>
-          <View className="mt-2">
-            <UIText variant="muted">
-              Melde dich mit deiner E-Mail an.
-            </UIText>
+          <View className="items-start">
+            <LogoMark size="sm" />
           </View>
 
-          <View className="mt-10 gap-4">
+          <View className="mt-14">
+            <UIText variant="caption">Willkommen zurück</UIText>
+          </View>
+          <View className="mt-3">
+            <UIText variant="display">Melde dich an.</UIText>
+          </View>
+          <View className="mt-3">
+            <UIText variant="muted">Wir zeigen dir, wer gerade sucht.</UIText>
+          </View>
+
+          <View className="mt-12 gap-5">
             <Controller
               control={control}
               name="email"
@@ -83,7 +88,7 @@ export default function Login() {
                   onChangeText={onChange}
                   error={errors.password?.message}
                   secureTextEntry
-                  placeholder="********"
+                  placeholder="mindestens 8 Zeichen"
                 />
               )}
             />
@@ -99,19 +104,19 @@ export default function Login() {
           </View>
 
           {submitError && (
-            <Text className="mt-4 text-center text-sm text-red-600">
+            <Text className="mt-6 text-center text-sm text-red-600">
               E-Mail oder Passwort ist falsch
             </Text>
           )}
 
-          <View className="mt-8">
+          <View className="mt-10">
             <Button onPress={handleSubmit(onSubmit)} loading={isSubmitting}>
               Einloggen
             </Button>
           </View>
 
-          <View className="mt-auto">
-            <View className="flex-row justify-center">
+          <View className="mt-auto items-center pt-10">
+            <View className="flex-row items-center">
               <Text className="text-brand-900">Noch keinen Account? </Text>
               <Link
                 href="/(auth)/register"
@@ -120,8 +125,8 @@ export default function Login() {
                 Registrieren
               </Link>
             </View>
-            <Text className="mt-6 text-center text-xs text-brand-500">
-              Mit dem Login akzeptierst du die Nutzungsbedingungen und
+            <Text className="mt-6 text-center text-xs leading-5 text-brand-500">
+              Mit dem Login akzeptierst du die Nutzungsbedingungen und die
               Datenschutzerklärung.
             </Text>
           </View>
