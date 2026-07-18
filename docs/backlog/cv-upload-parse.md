@@ -1,8 +1,8 @@
 # CV-Upload und AI-Parse
 
 **Priorität:** P3
-**Wer:** unassigned
-**Status:** open
+**Wer:** codex
+**Status:** in-progress
 
 ## Ziel
 User kann eine bestehende CV-PDF hochladen, DeepSeek extrahiert die Felder und pre-fillt den Onboarding-Wizard.

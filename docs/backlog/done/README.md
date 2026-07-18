@@ -10,7 +10,7 @@ Format:
 
 ## Historie
 
-_leer — noch keine Items abgeschlossen im neuen Backlog-System._
+- 2026-07-18 [push-migration-0007](push-migration-0007.md) — von claude — Chat-Migration in Dev-DB applied, Realtime auf messages aktiviert, dev_auto_reply_recruiter Trigger + 4 Auto-Replies verifiziert.
 
 Der Fortschritt vor Einführung dieses Systems steht in den commits
 (siehe `git log`) und in den Skills unter `~/.claude/projects/-home-senseless-Projects-NexaAi/memory/`.

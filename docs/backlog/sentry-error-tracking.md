@@ -1,8 +1,8 @@
 # Sentry Error-Tracking
 
 **Priorität:** P1
-**Wer:** unassigned
-**Status:** open
+**Wer:** codex
+**Status:** in-progress
 
 ## Ziel
 Crashes und unerwartete Fehler vom Mobile-Client an Sentry senden, damit wir bei User-Tests wissen was schiefgeht.

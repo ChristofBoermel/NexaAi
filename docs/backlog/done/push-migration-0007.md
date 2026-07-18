@@ -1,3 +1,7 @@
+**Abgeschlossen:** 2026-07-18 von claude, Commit siehe git log — Migration erfolgreich applied, dev_auto_reply_recruiter + 4 Auto-Replies verifiziert.
+
+---
+
 # Push Migration 0007 + Function-Deploy
 
 **Priorität:** P0

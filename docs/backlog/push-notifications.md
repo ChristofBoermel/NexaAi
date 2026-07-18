@@ -1,8 +1,8 @@
 # Push-Notifications
 
 **Priorität:** P1
-**Wer:** unassigned
-**Status:** open
+**Wer:** codex
+**Status:** in-progress
 
 ## Ziel
 Push-Notification bei neuem Mutual-Match und bei neuer Chat-Message, damit der User nicht die App offen haben muss.
