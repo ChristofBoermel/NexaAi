@@ -79,6 +79,13 @@ export default function Home() {
           </Button>
           <Button
             variant="ghost"
+            onPress={() => router.push('/(app)/matches')}
+            leadingIcon={<Ionicons name="chatbubble-outline" size={20} color={brand[800]} />}
+          >
+            Deine Matches öffnen
+          </Button>
+          <Button
+            variant="ghost"
             onPress={() => router.push('/(app)/onboarding/beruf')}
             leadingIcon={<Ionicons name="create-outline" size={20} color={brand[800]} />}
           >

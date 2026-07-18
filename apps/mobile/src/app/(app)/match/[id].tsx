@@ -1,6 +1,6 @@
 // Match notification: quiet editorial reveal, not fake fireworks.
 // Cream backdrop, caption eyebrow, display headline, then a single soft
-// info card that unblurs the company. Chat CTA disabled until chat chunk.
+// info card that unblurs the company and opens the chat.
 
 import { View } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
@@ -85,13 +85,12 @@ export default function MatchScreen() {
 
         <View className="mt-auto gap-3 pb-6">
           <Button
-            onPress={() => {}}
-            disabled
+            onPress={() => router.push(`/(app)/chat/${match.id}`)}
             leadingIcon={
               <Ionicons name="chatbubble-outline" size={20} color={neutral.white} />
             }
           >
-            Zum Chat (kommt bald)
+            Zum Chat
           </Button>
           <Button
             variant="ghost"

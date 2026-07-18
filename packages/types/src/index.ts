@@ -6,5 +6,6 @@ export * from './seeker'
 export * from './seeker-profile'
 export * from './job'
 export * from './match'
+export * from './messaging'
 
 export const TYPES_PLACEHOLDER = true
