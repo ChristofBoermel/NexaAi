@@ -3,11 +3,6 @@
 
 import { Text, View } from 'react-native'
 
-const MONTHS = [
-  'Januar', 'Februar', 'Maerz', 'April', 'Mai', 'Juni',
-  'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember',
-]
-
 function formatDate(iso: string | null): string {
   if (!iso) return ''
   const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(iso)

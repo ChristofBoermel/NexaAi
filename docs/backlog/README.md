@@ -38,13 +38,11 @@ oder Bereiche kollidieren.
 |-----------|------|------|-----|--------|
 | P0 | [push-migration-0007](push-migration-0007.md) | Chat-Migration + FN-Deploy auf Dev-DB | claude | open |
 | P1 | [feed-chat-e2e-test](feed-chat-e2e-test.md) | Ende-zu-Ende-Test Feed → Match → Chat auf Handy | christof | open |
-| P1 | [sentry-error-tracking](sentry-error-tracking.md) | Crashes vom Handy an Sentry senden | unassigned | open |
 | P1 | [cv-pdf-export](cv-pdf-export.md) | User kann CV als PDF exportieren | unassigned | open |
-| P1 | [push-notifications](push-notifications.md) | Push für neue Matches und Chat-Messages | unassigned | open |
 | P2 | [recruiter-web-admin](recruiter-web-admin.md) | Company-Onboarding und Job-Erstellung im Admin | unassigned | open |
 | P2 | [remove-dev-triggers](remove-dev-triggers.md) | dev_auto_approve + dev_auto_reply raus wenn Recruiter live | unassigned | blocked |
 | P2 | [posthog-analytics](posthog-analytics.md) | Funnel-Tracking nach Consent-Screen | unassigned | open |
-| P3 | [cv-upload-parse](cv-upload-parse.md) | PDF-Upload + DeepSeek-Parse als Alternative zum Wizard | unassigned | open |
+| P3 | [cv-upload-parse](cv-upload-parse.md) | PDF-Upload + DeepSeek-Parse als Alternative zum Wizard | codex | in-progress |
 | P3 | [smtp-domain-verify](smtp-domain-verify.md) | Resend-Domain verifizieren, Password-Reset E2E fixen | unassigned | blocked |
 | P3 | [phone-verification](phone-verification.md) | Handy-Nummer-Bestätigung wie Indeed/StepStone | unassigned | open |
 

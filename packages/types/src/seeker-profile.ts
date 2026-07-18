@@ -94,7 +94,18 @@ export const skillSelectionSchema = z
   .min(1, 'Bitte wähle mindestens einen Skill')
   .max(6, 'Maximal 6 Skills möglich')
 
+export const parsedCvBasicsSchema = basicsSchema.partial()
+
+export const parsedCvDraftSchema = z.object({
+  basics: parsedCvBasicsSchema,
+  workExperiences: z.array(workExperienceSchema).max(12),
+  educations: z.array(educationSchema).max(8),
+  confidence: z.number().min(0).max(1),
+  warnings: z.array(z.string()).max(10),
+})
+
 export type BasicsInput = z.infer<typeof basicsSchema>
 export type WorkExperienceInput = z.infer<typeof workExperienceSchema>
 export type EducationInput = z.infer<typeof educationSchema>
 export type SkillSelectionInput = z.infer<typeof skillSelectionSchema>
+export type ParsedCvDraft = z.infer<typeof parsedCvDraftSchema>

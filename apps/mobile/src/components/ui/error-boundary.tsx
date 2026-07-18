@@ -5,6 +5,8 @@
 import { Component, type ReactNode } from 'react'
 import { Pressable, Text, View } from 'react-native'
 
+import { captureException } from '@/lib/sentry'
+
 type State = { hasError: boolean }
 
 export class ErrorBoundary extends Component<{ children: ReactNode }, State> {
@@ -16,6 +18,7 @@ export class ErrorBoundary extends Component<{ children: ReactNode }, State> {
 
   componentDidCatch(error: unknown, info: unknown) {
     console.warn('ErrorBoundary caught', error, info)
+    captureException(error, { componentStack: info })
   }
 
   private handleReset = () => {

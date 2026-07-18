@@ -12,6 +12,7 @@ import { type WorkExperienceInput } from '@nexaai/types'
 import { brand } from '@/lib/colors'
 
 import { useSession } from '@/lib/auth'
+import { getParsedCvDraft } from '@/lib/cv-upload'
 import {
   deleteWorkExperience,
   upsertWorkExperience,
@@ -36,6 +37,7 @@ export default function Erfahrung() {
   const { session } = useSession()
   const userId = session?.user.id
   const { items, isLoading, refetch } = useWorkExperiences()
+  const draftItems = getParsedCvDraft()?.workExperiences ?? []
 
   const [modalVisible, setModalVisible] = useState(false)
   const [editing, setEditing] = useState<ExperienceInitial | null>(null)
@@ -76,6 +78,19 @@ export default function Erfahrung() {
     await refetch()
   }
 
+  const onApplyDraft = async () => {
+    if (!userId) return
+    await Promise.all(
+      draftItems.map((item, index) =>
+        upsertWorkExperience(userId, {
+          ...item,
+          sortOrder: index,
+        }),
+      ),
+    )
+    await refetch()
+  }
+
   if (isLoading) {
     return <View className="flex-1 bg-white" />
   }
@@ -97,6 +112,22 @@ export default function Erfahrung() {
         </View>
 
         <View className="mt-6 gap-3">
+          {items.length === 0 && draftItems.length > 0 ? (
+            <View className="rounded-lg border border-brand-200 px-4 py-4">
+              <Text className="text-base font-semibold text-brand-800">
+                {draftItems.length} Stationen aus deinem Upload erkannt
+              </Text>
+              <Text className="mt-1 text-sm text-brand-500">
+                Übernimm sie als Entwurf und prüfe danach jede Station einzeln.
+              </Text>
+              <View className="mt-4">
+                <Button variant="ghost" onPress={onApplyDraft}>
+                  Stationen übernehmen
+                </Button>
+              </View>
+            </View>
+          ) : null}
+
           {items.map((row) => (
             <Pressable
               key={row.id}

@@ -1,8 +1,12 @@
+**Abgeschlossen:** 2026-07-19 von codex+claude — `push_tokens` + `notification_deliveries` Tabellen (Migration 0008), Onboarding-Consent-Screen, DB-Trigger auf `matches` und `messages` rufen `notify` Edge Function via `pg_net.http_post`, Function fanoutet an Expo Push und respektiert 5/h Rate-Limit. Deep-Links auf Match- und Chat-Screen. Handy-Test: Match-Push und Chat-Push beide erfolgreich zugestellt (`notification_deliveries.status = ok`). Vault-basierter Config-Lookup nach Repair-Migration 0012 (siehe Kommentar dort).
+
+---
+
 # Push-Notifications
 
 **Priorität:** P1
 **Wer:** codex
-**Status:** in-progress
+**Status:** done
 
 ## Ziel
 Push-Notification bei neuem Mutual-Match und bei neuer Chat-Message, damit der User nicht die App offen haben muss.

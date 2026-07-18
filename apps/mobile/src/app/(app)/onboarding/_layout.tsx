@@ -15,17 +15,28 @@ import { LogoMark } from '@/components/ui/logo-mark'
 import { SegmentedProgressBar, type Segment } from '@/components/ui/progress-bar'
 import { Text } from '@/components/ui/text'
 
-const STEPS = ['beruf', 'basics', 'erfahrung', 'ausbildung', 'skills', 'preview'] as const
+const STEPS = [
+  'upload',
+  'beruf',
+  'basics',
+  'erfahrung',
+  'ausbildung',
+  'skills',
+  'preview',
+  'notifications',
+] as const
 
 type StepName = (typeof STEPS)[number]
 
 const STEP_LABEL: Record<StepName, string> = {
+  upload: 'CV-Upload',
   beruf: 'Berufsbezeichnung',
   basics: 'Basis-Daten',
   erfahrung: 'Berufserfahrung',
   ausbildung: 'Ausbildung',
   skills: 'Skills',
   preview: 'Vorschau',
+  notifications: 'Benachrichtigungen',
 }
 
 export default function OnboardingLayout() {
@@ -40,6 +51,7 @@ export default function OnboardingLayout() {
   const { items: skills } = useSeekerSkills()
 
   const complete: Record<StepName, boolean> = {
+    upload: Boolean(seeker?.job_title),
     beruf: Boolean(seeker?.job_title),
     basics: Boolean(
       profile?.first_name &&
@@ -52,6 +64,7 @@ export default function OnboardingLayout() {
     ausbildung: educations.length > 0,
     skills: skills.length > 0,
     preview: Boolean(seeker?.cv_approved_at),
+    notifications: false,
   }
 
   const progress: Segment[] = STEPS.map((name, i) => ({

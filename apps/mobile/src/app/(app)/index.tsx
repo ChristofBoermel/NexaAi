@@ -8,6 +8,7 @@ import { Ionicons } from '@expo/vector-icons'
 
 import { signOut } from '@/lib/auth'
 import { brand, neutral } from '@/lib/colors'
+import { triggerDevCrash } from '@/lib/sentry'
 import {
   useEducations,
   useSeekerProfile,
@@ -44,7 +45,7 @@ export default function Home() {
   }
 
   if (!seeker || seeker.cv_approved_at == null) {
-    return <Redirect href="/(app)/onboarding/beruf" />
+    return <Redirect href="/(app)/onboarding/upload" />
   }
 
   return (
@@ -72,7 +73,7 @@ export default function Home() {
 
         <View className="mt-10 gap-3">
           <Button
-            onPress={() => router.push('/(app)/feed')}
+            onPress={() => router.push('/(app)/search')}
             leadingIcon={<Ionicons name="briefcase-outline" size={20} color={neutral.white} />}
           >
             Job-Feed öffnen
@@ -98,6 +99,15 @@ export default function Home() {
           >
             Abmelden
           </Button>
+          {__DEV__ ? (
+            <Button
+              variant="ghost"
+              onPress={triggerDevCrash}
+              leadingIcon={<Ionicons name="bug-outline" size={20} color={brand[800]} />}
+            >
+              Sentry-Test auslösen
+            </Button>
+          ) : null}
         </View>
       </ScrollView>
     </SafeAreaView>

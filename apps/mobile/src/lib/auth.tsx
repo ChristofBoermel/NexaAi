@@ -7,6 +7,7 @@ import { createContext, useContext, useEffect, useState } from 'react'
 import type { ReactNode } from 'react'
 import type { Session } from '@supabase/supabase-js'
 
+import { clearSentryUser, setSentryUser } from './sentry'
 import { supabase } from './supabase'
 
 type SessionState = {
@@ -31,11 +32,17 @@ export function SessionProvider({ children }: { children: ReactNode }) {
     supabase.auth.getSession().then(({ data }) => {
       if (!mounted) return
       setState({ session: data.session, isLoading: false })
+      if (data.session?.user.id) setSentryUser(data.session.user.id)
     })
 
     const { data: sub } = supabase.auth.onAuthStateChange((_event, session) => {
       if (!mounted) return
       setState({ session, isLoading: false })
+      if (session?.user.id) {
+        setSentryUser(session.user.id)
+      } else {
+        clearSentryUser()
+      }
     })
 
     return () => {

@@ -18,7 +18,7 @@
   "devDependencies": {
     "@nexaai/config": "workspace:*",
     "@nexaai/types": "workspace:*",
-    "supabase": "^1.226.0",
+    "supabase": "^2.109.1",
     "tsx": "^4.19.0",
     "typescript": "^5.6.0"
   }

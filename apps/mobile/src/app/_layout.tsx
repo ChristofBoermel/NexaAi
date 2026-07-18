@@ -5,9 +5,12 @@ import '../../global.css'
 import { Slot } from 'expo-router'
 
 import { SessionProvider } from '@/lib/auth'
+import { initSentry, withSentryRoot } from '@/lib/sentry'
 import { ErrorBoundary } from '@/components/ui/error-boundary'
 
-export default function RootLayout() {
+initSentry()
+
+function RootLayout() {
   return (
     <ErrorBoundary>
       <SessionProvider>
@@ -16,3 +19,5 @@ export default function RootLayout() {
     </ErrorBoundary>
   )
 }
+
+export default withSentryRoot(RootLayout)

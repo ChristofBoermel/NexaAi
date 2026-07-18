@@ -1,8 +1,12 @@
+**Abgeschlossen:** 2026-07-19 von codex+claude — Sentry-Wrapper mit PII-Scrubbing (`apps/mobile/src/lib/sentry.ts`), Init im Root-Layout vor SessionProvider, ErrorBoundary meldet weiter, Dev-Crash-Button in Home. Fix nach Handy-Test: `triggerDevCrash` ruft `captureException` direkt statt zu werfen (Event-Handler-Errors erreichen ErrorBoundary nicht). Handy-Test bestätigt: Event landete im Sentry-Dashboard.
+
+---
+
 # Sentry Error-Tracking
 
 **Priorität:** P1
 **Wer:** codex
-**Status:** in-progress
+**Status:** done
 
 ## Ziel
 Crashes und unerwartete Fehler vom Mobile-Client an Sentry senden, damit wir bei User-Tests wissen was schiefgeht.

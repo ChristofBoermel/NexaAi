@@ -5,6 +5,7 @@ import { ScrollView, View } from 'react-native'
 import { useRouter } from 'expo-router'
 
 import { useSession } from '@/lib/auth'
+import { clearParsedCvDraft } from '@/lib/cv-upload'
 import {
   approveCv,
   useEducations,
@@ -29,7 +30,8 @@ export default function Preview() {
     if (!userId) return
     const { error } = await approveCv(userId)
     if (error) return
-    router.replace('/(app)')
+    clearParsedCvDraft()
+    router.replace('/(app)/onboarding/notifications')
   }
 
   const loading = p1 || p2 || p3 || p4

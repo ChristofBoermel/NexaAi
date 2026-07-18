@@ -23,6 +23,18 @@ web-build/
 .env.local
 .env.*.local
 
+# Local credentials and service account keys
+credentials.json
+*.credentials.json
+*firebase-adminsdk*.json
+*service-account*.json
+*service_account*.json
+service-account*.json
+sentry.properties
+android/app/google-services.json
+android/app/src/*/google-services.json
+GoogleService-Info.plist
+
 # Logs
 *.log
 npm-debug.log*
@@ -64,6 +76,8 @@ ios/
 supabase/.branches
 supabase/.temp
 supabase/logs
+supabase/.env
+packages/db/supabase/.env
 
 # Docker
 docker-compose.override.yml

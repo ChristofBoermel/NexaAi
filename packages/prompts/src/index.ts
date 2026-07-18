@@ -3,4 +3,5 @@
 // Version-Bump bei jeder inhaltlichen Aenderung, damit A/B-Tests moeglich sind.
 
 export * from './cv-generation'
+export * from './cv-parsing'
 export * from './job-writer'

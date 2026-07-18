@@ -6,8 +6,6 @@ import { useState } from 'react'
 import { Platform, Pressable, Text, View } from 'react-native'
 import DateTimePicker, { type DateTimePickerEvent } from '@react-native-community/datetimepicker'
 
-import { brand } from '@/lib/colors'
-
 function toDisplay(iso: string | null | undefined): string {
   if (!iso) return ''
   const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(iso)

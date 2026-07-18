@@ -13,6 +13,7 @@ import { basicsSchema, type BasicsInput } from '@nexaai/types'
 
 import { useSession } from '@/lib/auth'
 import { brand } from '@/lib/colors'
+import { getParsedCvDraft } from '@/lib/cv-upload'
 import { lookupCity } from '@/lib/plz'
 import { saveBasics, useSeekerProfile } from '@/lib/seeker'
 import { Button } from '@/components/ui/button'
@@ -49,17 +50,21 @@ export default function Basics() {
   })
 
   useEffect(() => {
+    const draft = getParsedCvDraft()
+    const basics = draft?.basics
+
     reset({
-      firstName: profile?.first_name ?? '',
-      lastName: profile?.last_name ?? '',
-      jobTitle: seeker?.job_title ?? '',
-      birthYear: seeker?.birth_year ?? undefined,
-      postalCode: seeker?.postal_code ?? '',
-      city: seeker?.city ?? '',
-      hasDriverLicense: seeker?.has_driver_license ?? false,
-      hasCar: seeker?.has_car ?? false,
-      availableFrom: seeker?.available_from ?? '',
-      salaryExpectation: seeker?.salary_expectation_eur ?? undefined,
+      firstName: profile?.first_name ?? basics?.firstName ?? '',
+      lastName: profile?.last_name ?? basics?.lastName ?? '',
+      jobTitle: seeker?.job_title ?? basics?.jobTitle ?? '',
+      birthYear: seeker?.birth_year ?? basics?.birthYear ?? undefined,
+      postalCode: seeker?.postal_code ?? basics?.postalCode ?? '',
+      city: seeker?.city ?? basics?.city ?? '',
+      hasDriverLicense: seeker?.has_driver_license ?? basics?.hasDriverLicense ?? false,
+      hasCar: seeker?.has_car ?? basics?.hasCar ?? false,
+      availableFrom: seeker?.available_from ?? basics?.availableFrom ?? '',
+      salaryExpectation:
+        seeker?.salary_expectation_eur ?? basics?.salaryExpectation ?? undefined,
     })
   }, [profile, seeker, reset])
 

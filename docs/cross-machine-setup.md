@@ -207,6 +207,13 @@ git checkout wip/mobile-onboarding
 git pull
 ```
 
+## Firebase-Secrets pro Rechner
+
+Firebase liefert zwei Files, die nicht ins Git dürfen und auf jedem Rechner lokal liegen müssen:
+
+- **Admin-SDK Service-Account JSON** (`*firebase-adminsdk*.json`): echter Secret. Liegt bei uns unter `~/.config/nexaai/firebase/service-account.json` mit `chmod 600`. Wird nur von Server-Code (Edge Functions, Admin-Scripts) benötigt. Beim Neu-Aufsetzen: aus Firebase-Console > Project Settings > Service Accounts neu generieren.
+- **`google-services.json`** (Android FCM Client-Config): technisch kein Secret (Google erlaubt Commit), aber bei uns bewusst `untracked` in `apps/google-services.json`. Beim Neu-Aufsetzen: aus Firebase-Console > Project Settings > General > Deine Android-App runterladen und nach `apps/google-services.json` legen. Ohne diese Datei schlägt der Android-Build fehl (in `apps/mobile/app.json` als `googleServicesFile: "../google-services.json"` referenziert).
+
 ## Env-Vars pro Rechner
 
 Jeder Rechner hat seine eigene `.env.local`, die nicht gecommitted wird. Beim Setup wird sie aus `.env.example` erzeugt und du füllst die Secrets ein.

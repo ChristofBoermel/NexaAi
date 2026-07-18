@@ -33,6 +33,15 @@ yarn-error.*
 # local env files
 .env*.local
 
+# local credentials
+credentials.json
+*.credentials.json
+*firebase-adminsdk*.json
+*service-account*.json
+*service_account*.json
+sentry.properties
+GoogleService-Info.plist
+
 # typescript
 *.tsbuildinfo
 

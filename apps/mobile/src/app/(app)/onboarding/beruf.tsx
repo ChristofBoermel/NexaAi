@@ -2,13 +2,14 @@
 // Ohne Titel geht es nicht weiter, das ist der Kopf im CV.
 
 import { useEffect } from 'react'
-import { Text, View } from 'react-native'
+import { View } from 'react-native'
 import { Controller, useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useRouter } from 'expo-router'
 import { z } from 'zod'
 
 import { useSession } from '@/lib/auth'
+import { getParsedCvDraft } from '@/lib/cv-upload'
 import { saveJobTitle, useSeekerProfile } from '@/lib/seeker'
 import { Button } from '@/components/ui/button'
 import { FormScroll } from '@/components/ui/form-scroll'
@@ -41,8 +42,11 @@ export default function Beruf() {
   })
 
   useEffect(() => {
+    const draft = getParsedCvDraft()
     if (seeker?.job_title) {
       reset({ jobTitle: seeker.job_title })
+    } else if (draft?.basics.jobTitle) {
+      reset({ jobTitle: draft.basics.jobTitle })
     }
   }, [seeker, reset])
 
